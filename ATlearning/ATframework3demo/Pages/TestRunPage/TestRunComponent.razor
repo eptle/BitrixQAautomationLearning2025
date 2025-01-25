@@ -1,0 +1,60 @@
+﻿@inherits TestRunComponentBase
+@using ATframework3demo.BaseFramework
+
+<table width="600px">
+    <div style="color: red">@DisplayedError</div>
+    <input class="form-control" placeholder="Адрес портала" type="text" @bind="PortalUri" style="background-color: @PortalUriBgColor" @onclick="OnInputClick" />
+    <input class="form-control" placeholder="Логин" type="text" @bind="PortalUser.LoginAkaEmail" style="background-color: @LoginBgColor" @onclick="OnInputClick" />
+    <input class="form-control" placeholder="Пароль" type="password" @bind="PortalUser.Password" style="background-color: @PwdBgColor" @onclick="OnInputClick" />
+</table>
+
+<button disabled="@RunButtonDisabled" class="btn btn-sm btn-primary" @onclick="RunSelectedTests">Запустить выбранные тесты</button>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Статус</th>
+            <th></th>
+            <th>Кейс</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var testCase in CaseCollection)
+        {
+            <tr>
+                <td>
+                    @{
+                        string badgeType = "badge bg-";
+                        if (testCase.Status == TestCaseStatus.failed)
+                        {
+                            badgeType += "danger";
+                        }
+                        else if (testCase.Status == TestCaseStatus.passed)
+                        {
+                            badgeType += "success";
+                        }
+                        else if (testCase.Status == TestCaseStatus.running)
+                        {
+                            badgeType += "primary";
+                        }
+                        else
+                        {
+                            badgeType += "secondary";
+                        }
+                    }
+                    <span class="@badgeType">@testCase.Status</span>
+                </td>
+                <td>
+                    @if (testCase.Status != TestCaseStatus.idle && testCase.Status != TestCaseStatus.waitingForExecute)
+                    {
+                        <button class="btn btn-sm btn-primary" @onclick="() => ShowLog(testCase)">Лог</button>
+                    }
+                </td>
+                <td>
+                    <input type="checkbox" @bind="@testCase.Node.IsChecked">
+                    @testCase.EnvType: @testCase.Title
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

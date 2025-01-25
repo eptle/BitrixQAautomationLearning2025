@@ -1,0 +1,29 @@
+﻿@using atFrameWork2.BaseFramework
+
+@if (TestCase != default)
+{
+    <div style="word-break:break-all;">
+        @((MarkupString)LogContent)
+    </div>
+    <div style="width: 200px; margin: 0 auto;">
+        <button @onclick="ReloadLogFile" class="btn btn-sm btn-primary">Обновить</button>
+    </div>
+}
+
+@code {
+    [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
+    [Parameter] public TestCase TestCase { get; set; }
+    string LogContent { get; set; }
+
+    void ReloadLogFile()
+    {
+        if(TestCase != default && File.Exists(TestCase.CaseLogPath))
+            LogContent = File.ReadAllText(TestCase.CaseLogPath);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        ReloadLogFile();
+    }
+}
