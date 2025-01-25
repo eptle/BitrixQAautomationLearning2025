@@ -1,5 +1,6 @@
 ﻿using atFrameWork2.SeleniumFramework;
 using ATframework3demo.PageObjects;
+using ATframework3demo.PageObjects.CRM;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -70,6 +71,13 @@ namespace atFrameWork2.PageObjects
             var btnNews = new WebItem("//li[@id='bx_left_menu_menu_live_feed']", "Пункт левого меню Новости");
             ClickMenuItem(btnNews);
             return new NewsPage(Driver);
+        }
+
+        public CRMbasePage OpenCRM()
+        {
+            var btnCRM = new WebItem("//li[@id='bx_left_menu_menu_crm_favorite']", "Пункт левого меню Новости");
+            ClickMenuItem(btnCRM);
+            return new CRMbasePage();
         }
     }
 }
