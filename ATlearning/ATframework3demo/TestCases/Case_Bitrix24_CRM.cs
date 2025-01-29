@@ -20,6 +20,12 @@ namespace ATframework3demo.TestCases
 
         void CreateDeal(PortalHomePage homePage) // тело самого кейса. 1 метод -- 1 тест кейс
         {
+            // подготовка среды
+            // допустим, нам надо создать новый контакт
+            var phpExecutor = new PHPcommandLineExecutor(TestCase.RunningTestCase.TestPortal.PortalUri,
+                TestCase.RunningTestCase.TestPortal.PortalAdmin.LoginAkaEmail,
+                TestCase.RunningTestCase.TestPortal.PortalAdmin.Password);
+
             var dmitrix = new Bitrix24CRMcontacts { Name = "Dmitrix" + HelperMethods.GetDateTimeSaltString() };
 
             //перейти в црм
