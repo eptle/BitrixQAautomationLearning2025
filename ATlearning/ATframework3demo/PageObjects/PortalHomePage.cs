@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using ATframework3demo.PageObjects.NewsFeed;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,5 +17,9 @@ namespace atFrameWork2.PageObjects
 
         public PortalLeftMenu LeftMenu => new PortalLeftMenu(Driver);
 
+        public NewsFeed ToNewsFeed()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
