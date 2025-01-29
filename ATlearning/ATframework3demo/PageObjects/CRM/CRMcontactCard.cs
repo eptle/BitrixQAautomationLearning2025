@@ -9,7 +9,7 @@ namespace ATframework3demo.PageObjects.CRM
         public CRMcontactsPage Close()
         {
             throw new NotImplementedException();
-            return new CRMcontactsPage;
+            return new CRMcontactsPage();
         }
 
         internal bool AssertNameField(Bitrix24CRMcontacts name)

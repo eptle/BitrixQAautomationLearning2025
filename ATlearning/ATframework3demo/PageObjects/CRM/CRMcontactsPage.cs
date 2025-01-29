@@ -4,6 +4,8 @@ namespace ATframework3demo.PageObjects.CRM
 {
     public class CRMcontactsPage
     {
+        public 
+
         public CRMcontactEditForm OpenCreationForm()
         {
             throw new NotImplementedException();
