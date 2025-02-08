@@ -14,45 +14,49 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases() // этот метод добавляет наш тест-кейс в очередь/список
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Создание сделки", homePage => CreateDeal(homePage)));
+            caseCollection.Add(new TestCase("Смена ответственного", homePage => ChangeContactResponsible(homePage)));
             return caseCollection;
         }
 
-        void CreateDeal(PortalHomePage homePage) // тело самого кейса. 1 метод -- 1 тест кейс
+        void ChangeContactResponsible(PortalHomePage homePage) // тело самого кейса. 1 метод -- 1 тест кейс
         {
-            // подготовка среды
-            // допустим, нам надо создать новый контакт
-            var phpExecutor = new PHPcommandLineExecutor(TestCase.RunningTestCase.TestPortal.PortalUri,
-                TestCase.RunningTestCase.TestPortal.PortalAdmin.LoginAkaEmail,
-                TestCase.RunningTestCase.TestPortal.PortalAdmin.Password);
+            //a[text()='123123123'] -- посмортеть текст внутри тега
 
-            var dmitrix = new Bitrix24CRMcontacts { Name = "Dmitrix" + HelperMethods.GetDateTimeSaltString() };
+            // создать контакт через пхп
+            var contactToChangeResponsible = new Bitrix24CRMcontacts { Name = "Dmitrix" + HelperMethods.GetDateTimeSaltString() };
+            contactToChangeResponsible.CreateByAPI(TestCase.RunningTestCase.TestPortal);
+            // создать сотрудника для передачи прав
+            var newResponsible = TestCase.RunningTestCase.CreatePortalTestUser(false);
 
             //перейти в црм
-            var contactCard = homePage
+            var CRMbasePage = homePage
+                .LeftMenu
+                .OpenCRM();
+
+            //открыть контакты
+            CRMbasePage
+                .OpenContacts()
+            //открыть контакт
+                .OpenContact(contactToChangeResponsible)
+            //сменить ответственного
+                .ChangeResponsible(newResponsible)
+                .Close();
+
+            // дать права новому юзеру на црм
+            CRMbasePage
+                .OpenRightsSettings()
+                .AddDirector(newResponsible)
+                .Save();
+
+            WebItem.DefaultDriver.Quit();
+            WebItem.DefaultDriver = default;
+            new PortalLoginPage(TestCase.RunningTestCase.TestPortal)
+                .Login(newResponsible)
                 .LeftMenu
                 .OpenCRM()
-            //открыть контакты
                 .OpenContacts()
-            //открыть создание контакта 
-                .OpenCreationForm()
-            //заполнить поля
-                .SetName(dmitrix)
-            //сохранить
-                .Save()
-            //закрыть просмотр контакта
-                .Close()
-            //проверить создание контакта
-                .OpenContact(dmitrix);
-            //открыть проверить поля
-            contactCard.AssertNameField(dmitrix);
-            contactCard.Close();
-            //обновить страницу
-            WebDriverActions.Refresh();
-            //проверить создание контакта
-            //открыть контакт и проверить поля
-            new CRMcontactsPage()
-                .OpenContact(dmitrix);
+                .OpenContact(contactToChangeResponsible)
+                .AssertResponsible(newResponsible);
         }
     }
 }

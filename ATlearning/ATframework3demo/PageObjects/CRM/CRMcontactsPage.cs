@@ -1,10 +1,13 @@
-﻿using ATframework3demo.TestEntities;
+﻿using atFrameWork2.SeleniumFramework;
+using ATframework3demo.TestEntities;
 
 namespace ATframework3demo.PageObjects.CRM
 {
     public class CRMcontactsPage
     {
-        public 
+        WebItem ContactSliderFrame => new WebItem("//div[@id='crm_contact_slider']", "Фрейм с контактом");
+
+        WebItem ContactNameLink(string contactName) => new WebItem($"a[text()='{ contactName }']", "Ссылка на контакт в гриде");
 
         public CRMcontactEditForm OpenCreationForm()
         {
@@ -14,6 +17,8 @@ namespace ATframework3demo.PageObjects.CRM
 
         public CRMcontactCard OpenContact(Bitrix24CRMcontacts contact)
         {
+            ContactNameLink(contact.Name).Click();
+            ContactSliderFrame.SwitchToFrame();
             throw new NotImplementedException();
             return new CRMcontactCard();
         }
