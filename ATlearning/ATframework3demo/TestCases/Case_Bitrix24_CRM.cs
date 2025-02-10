@@ -43,11 +43,11 @@ namespace ATframework3demo.TestCases
                 .Close();
 
             // дать права новому юзеру на црм
-            CRMbasePage
+            /*CRMbasePage
                 .OpenRightsSettings()
                 .AddDirector(newResponsible)
                 .Save();
-
+            */
             WebItem.DefaultDriver.Quit();
             WebItem.DefaultDriver = default;
             new PortalLoginPage(TestCase.RunningTestCase.TestPortal)

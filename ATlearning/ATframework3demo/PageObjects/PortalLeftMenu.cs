@@ -75,7 +75,7 @@ namespace atFrameWork2.PageObjects
 
         public CRMbasePage OpenCRM()
         {
-            var btnCRM = new WebItem("//li[@id='bx_left_menu_menu_crm_favorite']", "Пункт левого меню Новости");
+            var btnCRM = new WebItem("//li[@id='bx_left_menu_menu_crm_favorite']", "Пункт левого меню crm");
             ClickMenuItem(btnCRM);
             return new CRMbasePage();
         }
