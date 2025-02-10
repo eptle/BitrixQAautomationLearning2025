@@ -1,22 +1,37 @@
 ﻿
+using atFrameWork2.BaseFramework;
+using atFrameWork2.SeleniumFramework;
+using OpenQA.Selenium;
+
 namespace ATframework3demo.PageObjects.NewsFeed
 {
     public class NewsFeedPost
     {
-        List<NewsFeedPostComment> Comments = new List<NewsFeedPostComment>(); 
+        public string ID { get; set; }
 
-        // создается комментарий под постом, добавляется в поле Comments
-        public NewsFeedPostComment CreateComment()
+        public IWebDriver Driver { get; }
+
+        public NewsFeedPost(IWebDriver driver = default)
         {
-            throw new NotImplementedException();
-            return new NewsFeedPostComment();
+            Driver = driver;
         }
 
-        // выбрать комментарий по айди
-        public NewsFeedPostComment ChooseComment(string CommentID)
+        List<NewsFeedPostComment> Comments = new List<NewsFeedPostComment>(); 
+
+        // тыкаем по полю комментария, открываем поле редактирования комментария
+        public NewsFeedPostComment ClickOnCommentArea()
         {
-            throw new NotImplementedException();
-            return new NewsFeedPostComment();
+            var areaAddComment = new WebItem($"//a[contains(text(), 'Добавить комментарий')]", "Текстовое поле 'Добавить комментарий'");
+            areaAddComment.Click(Driver);
+            Waiters.StaticWait_s(3);
+            return new NewsFeedPostComment(Driver);
+        }
+
+        // Найти комментарий по айди и вернуть его текст
+        public string GetCommentTextByID(string commentID)
+        {
+            ID = new WebItem($"//div[@id='{commentID}']/div/div", "находим комментарий по айди").InnerText();
+            return ID;
         }
     }
 }
