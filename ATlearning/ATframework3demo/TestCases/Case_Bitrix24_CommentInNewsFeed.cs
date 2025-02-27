@@ -57,7 +57,7 @@ namespace ATframework3demo.TestCases
                     .Login(user2)
                     .NewsFeed
                     // выбираем по айди пост в ленте
-                    .OpenPost(postID)
+                    .OpenPost(postID) 
                     .GetCommentTextByID(commentID);
 
                 if (commentText != text )
