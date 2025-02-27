@@ -21,6 +21,9 @@ namespace ATframework3demo.PageObjects.Project
             "//iframe[contains(@src, '/workgroups/group/')]",
                 "фрейм проекта");
 
+        /// <summary>
+        /// Кликнуть по полю "Написать сообщение..." в ленте проекта
+        /// </summary>
         public ProjectFeedPostForm ClickTypeMessageArea()
         {
             projectIframe.SwitchToFrame();
@@ -32,6 +35,9 @@ namespace ATframework3demo.PageObjects.Project
             return new ProjectFeedPostForm();
         }
 
+        /// <summary>
+        /// Найти пост в ленте по тексту
+        /// </summary>
         public bool FindPostByText(string text)
         {
             projectIframe.SwitchToFrame();

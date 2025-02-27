@@ -19,6 +19,9 @@ namespace ATframework3demo.PageObjects.ProjectCreation
                 "//button[@id='sonet_group_create_popup_form_button_submit']",
                 "Кнопка продолжить снизу фрейма");
 
+        /// <summary>
+        /// Перейти по вкладку "Конфиденциальность"
+        /// </summary>
         public СonfidentialityOfProject ToСonfidentiality()
         {
             projectFrame.SwitchToFrame();
@@ -27,6 +30,9 @@ namespace ATframework3demo.PageObjects.ProjectCreation
             return new СonfidentialityOfProject();
         }
 
+        /// <summary>
+        /// Добавить имя проекта
+        /// </summary>
         public AccessibilitiesOfProject AddName(string projectName)
         {
             projectFrame.SwitchToFrame();

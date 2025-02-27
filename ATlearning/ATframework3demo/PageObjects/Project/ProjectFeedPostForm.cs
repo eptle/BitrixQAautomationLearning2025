@@ -17,6 +17,9 @@ namespace ATframework3demo.PageObjects.Project
 
         public IWebDriver Driver { get; }
 
+        /// <summary>
+        /// Ввести текст поста в форму
+        /// </summary>
         public ProjectFeedPostForm AddText(string text)
         {
             projectIframe.SwitchToFrame();
@@ -32,6 +35,9 @@ namespace ATframework3demo.PageObjects.Project
             return new ProjectFeedPostForm();
         }
 
+        /// <summary>
+        /// Отправить пост
+        /// </summary>
         public ProjectFeed Send()
         {
             projectIframe.SwitchToFrame();

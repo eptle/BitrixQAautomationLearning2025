@@ -19,6 +19,9 @@ namespace ATframework3demo.PageObjects.ProjectCreation
                 "//button[@id='sonet_group_create_popup_form_button_submit']",
                 "Кнопка продолжить снизу фрейма");
 
+        /// <summary>
+        /// Создать проект
+        /// </summary>
         public ProjectFeed CreateProject()
         {
             projectFrame.SwitchToFrame();

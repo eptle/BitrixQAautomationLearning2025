@@ -14,6 +14,9 @@ namespace atFrameWork2.PageObjects
 
         public IWebDriver Driver { get; }
 
+        /// <summary>
+        /// Навести на кнопку "Проекты" сверху страницы и нажать на плюсик под этой кнопкой. 
+        /// </summary>
         public ChooseTypeOfProject CreateProjectBtn()
         {
             var projectBtn = new WebItem(
