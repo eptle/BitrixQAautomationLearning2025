@@ -1,11 +1,12 @@
 ﻿using atFrameWork2.SeleniumFramework;
+using ATframework3demo.PageObjects.Project;
 using OpenQA.Selenium;
 
-namespace ATframework3demo.PageObjects.Project
+namespace ATframework3demo.PageObjects.ProjectCreation
 {
-    public class CreationPostWindow
+    public class AccessibilitiesOfProject
     {
-        public CreationPostWindow(IWebDriver driver = default)
+        public AccessibilitiesOfProject(IWebDriver driver = default)
         {
             Driver = driver;
         }
@@ -18,40 +19,23 @@ namespace ATframework3demo.PageObjects.Project
                 "//button[@id='sonet_group_create_popup_form_button_submit']",
                 "Кнопка продолжить снизу фрейма");
 
-        public CreationPostWindow ChooseType()
+        public СonfidentialityOfProject ToСonfidentiality()
         {
             projectFrame.SwitchToFrame();
             continueBtn.Click();
             WebDriverActions.SwitchToDefaultContent();
-            return new CreationPostWindow();
+            return new СonfidentialityOfProject();
         }
 
-        public CreationPostWindow Accessibilities(string ProjectName)
+        public AccessibilitiesOfProject AddName(string projectName)
         {
             projectFrame.SwitchToFrame();
             var projectNameField = new WebItem(
                 "//input[@id='GROUP_NAME_input']",
                 "Поле добавления названия проекта");
-            projectNameField.SendKeys(ProjectName);
-            continueBtn.Click();
+            projectNameField.SendKeys(projectName);
             WebDriverActions.SwitchToDefaultContent();
-            return new CreationPostWindow();
-        }
-        
-        public CreationPostWindow Сonfidentiality()
-        {
-            projectFrame.SwitchToFrame();
-            continueBtn.Click();
-            WebDriverActions.SwitchToDefaultContent();
-            return new CreationPostWindow();
-        }
-
-        public ProjectFeed Members()
-        {
-            projectFrame.SwitchToFrame();
-            continueBtn.Click();
-            WebDriverActions.SwitchToDefaultContent();
-            return new ProjectFeed();
+            return new AccessibilitiesOfProject();
         }
     }
 }
