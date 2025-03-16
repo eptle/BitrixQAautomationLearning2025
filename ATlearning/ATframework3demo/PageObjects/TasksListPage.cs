@@ -1,4 +1,5 @@
 ﻿using atFrameWork2.SeleniumFramework;
+using ATframework3demo.PageObjects.Flows;
 using ATframework3demo.PageObjects.Project;
 using ATframework3demo.PageObjects.ProjectCreation;
 using OpenQA.Selenium;
@@ -28,6 +29,18 @@ namespace atFrameWork2.PageObjects
                 "Плюсик под кнопкой проекты, который появляется при наведении на кнопку Проекты");
             addProjectBtn.Click();
             return new ChooseTypeOfProject();
+        }
+
+        /// <summary>
+        /// Нажать кнопку Потоки сверху страницы
+        /// </summary>
+        public FlowsPage OpenFlows()
+        {
+            var flowsBtn = new WebItem(
+                "//a[@class='main-buttons-item-link' and contains(@href, '/tasks/flow/')]", 
+                "кнопка Потоки в верхнем меню");
+            flowsBtn.Click();
+            return new FlowsPage();
         }
     }
 }
