@@ -1,4 +1,6 @@
-﻿using atFrameWork2.SeleniumFramework;
+﻿using atFrameWork2.BaseFramework;
+using atFrameWork2.SeleniumFramework;
+using ATframework3demo.BaseFramework;
 using ATframework3demo.PageObjects.FlowCreation;
 using ATframework3demo.PageObjects.Project;
 using OpenQA.Selenium;
@@ -47,7 +49,35 @@ namespace ATframework3demo.PageObjects.Flows
                 $"//div[@class='tasks-flow__list-name_info --link']//a[contains(text(), '{projectName}')]",
                 "Кнопка открытия проекта под названием проекта");
             openProjectBtn.Click();
+            checkAndCloseTips();
             return new ProjectTasks();
+        }
+
+        /// <summary>
+        /// Закрыть всплывающую подсказку при открытии проекта
+        /// </summary>
+        private void checkAndCloseTips()
+        {
+            var ProjectFrame = new WebItem(
+            "//iframe[contains(@src, '/workgroups/group/')]",
+            "Фрейм сладера проекта");
+            ProjectFrame.SwitchToFrame();
+
+            var closeTipBtn = new WebItem(
+                "//div[@class='popup-window-buttons']//span[@class='popup-window-button webform-button webform-button-blue']",
+                "Кнопка 'закрыть' всплывающего окна");
+
+            try
+            {
+                closeTipBtn.InnerText();
+                closeTipBtn.Click();
+            }
+            catch
+            {
+
+            }
+
+            WebDriverActions.SwitchToDefaultContent();
         }
     }
 }
