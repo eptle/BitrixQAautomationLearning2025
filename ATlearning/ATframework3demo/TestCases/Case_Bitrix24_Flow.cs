@@ -53,7 +53,7 @@ namespace ATframework3demo.TestCases
             foreach ( string task in tasks )
             {
                 flowPage
-                .CreateTaskBtn(flowName)    // нажать на кнопку "создать задачу" напротив потока           //////При нажатии кнопки "создать задачу" впервые, возникает всплывающее окно конбан, не прописанное в автотесте//////////
+                .CreateTaskBtn(flowName)    // нажать на кнопку "создать задачу" напротив потока
                 .AddTitle(task)             // добавить заголовок задачи
                 .CreateTask();              // создать задачу
             }
