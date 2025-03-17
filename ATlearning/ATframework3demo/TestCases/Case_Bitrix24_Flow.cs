@@ -34,7 +34,7 @@ namespace ATframework3demo.TestCases
             string flowName = "flow_" + date;
             List<string> tasks = new List<string> { "task1_" + date, "task2_" + date }; 
         
-            var flowPage = homePage
+            var flowPage = homePage     //
                 .LeftMenu                   // левое меню
                 .OpenTasks()                // открыть задачи
                 .OpenFlows()                // открыть потоки
@@ -46,14 +46,14 @@ namespace ATframework3demo.TestCases
                 .AddUserByUsername(users)   // добавить пользователей из массива users
                 .OutOfPopup()               // закрыть всплывающее окно со списком пользователей
                 .ToControl()                // перейти в "управление" потока
-                .CreateFlow();              // нажать на кнопку "создать поток"
+                .CreateFlow();              // нажать на кнопку "создать поток"                 
         
             WebDriverActions.Refresh();
         
             foreach ( string task in tasks )
             {
                 flowPage
-                .CreateTaskBtn(flowName)    // нажать на кнопку "создать задачу" напротив потока
+                .CreateTaskBtn(flowName)    // нажать на кнопку "создать задачу" напротив потока           //////При нажатии кнопки "создать задачу" впервые, возникает всплывающее окно конбан, не прописанное в автотесте//////////
                 .AddTitle(task)             // добавить заголовок задачи
                 .CreateTask();              // создать задачу
             }
