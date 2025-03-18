@@ -1,4 +1,6 @@
+using atFrameWork2.BaseFramework;
 using atFrameWork2.SeleniumFramework;
+using ATframework3demo.PageObjects.Mobile.More;
 
 namespace ATframework3demo.PageObjects.Mobile
 {
@@ -14,6 +16,17 @@ namespace ATframework3demo.PageObjects.Mobile
             tasksTab.Click();
 
             return new MobileTasksListPage();
+        }
+
+        public MobileMoreListPage SelectMore()
+        {
+            Waiters.StaticWait_s(10);
+            var tasksTab = new MobileItem("//android.widget.FrameLayout[@content-desc=\"bottombar_tab_more\"]/android.widget.LinearLayout/android.widget.ImageView",
+                "Таб 'Еще'");
+            tasksTab.Click();
+            tasksTab.Click();
+
+            return new MobileMoreListPage();
         }
     }
 }

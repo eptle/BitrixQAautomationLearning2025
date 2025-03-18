@@ -15,7 +15,7 @@ namespace ATframework3demo.PageObjects.Mobile
                 "Кнопка 'введите адрес'");
             var portalAddresField = new MobileItem("//android.widget.EditText[@content-desc='signInPortalInput']",
                 "Поле для ввода адреса портала");
-            var loginField = new MobileItem("//android.widget.EditText[@content-desc='signInPortalFormPhoneInput']",
+            var loginField = new MobileItem("//android.widget.EditText[@content-desc=\"signInPortalFormLoginInput\"]",
                 "Поле для ввода логина");
             var pwdField = new MobileItem("//android.widget.EditText[@content-desc='passwordFormInput']",
                 "Поле для ввода пароля");
