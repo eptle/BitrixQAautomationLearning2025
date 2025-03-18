@@ -67,16 +67,12 @@ namespace ATframework3demo.PageObjects.Flows
                 "//div[@class='popup-window-buttons']//span[@class='popup-window-button webform-button webform-button-blue']",
                 "Кнопка 'закрыть' всплывающего окна");
 
-            try
+            bool isTipAppears = closeTipBtn.WaitElementDisplayed(); 
+
+            if (isTipAppears)
             {
-                closeTipBtn.InnerText();
                 closeTipBtn.Click();
             }
-            catch
-            {
-
-            }
-
             WebDriverActions.SwitchToDefaultContent();
         }
     }
