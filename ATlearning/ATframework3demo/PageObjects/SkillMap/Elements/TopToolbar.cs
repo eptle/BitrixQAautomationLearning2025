@@ -2,9 +2,5 @@
 {
     public class TopToolbar
     {
-        fnelr ner 
-            er
-            ger g
-            er g
     }
 }
