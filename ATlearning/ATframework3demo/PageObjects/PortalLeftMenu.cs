@@ -1,6 +1,7 @@
 ﻿using atFrameWork2.SeleniumFramework;
 using ATframework3demo.PageObjects;
 using ATframework3demo.PageObjects.CRM;
+using ATframework3demo.PageObjects.SkillMap;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -78,6 +79,13 @@ namespace atFrameWork2.PageObjects
             var btnCRM = new WebItem("//li[@id='bx_left_menu_menu_crm_favorite']", "Пункт левого меню crm");
             ClickMenuItem(btnCRM);
             return new CRMbasePage();
+        }
+
+        public SkillmapMainPage OpenSkillMap()
+        {
+            var btnSkillMap = new WebItem("//li[@id='bx_left_menu_538895851']", "Пункт SkillMap");
+            ClickMenuItem(btnSkillMap);
+            return new SkillmapMainPage();
         }
     }
 }
