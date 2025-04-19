@@ -12,6 +12,7 @@ namespace ATframework3demo.TestCases
 {
     public class Case_Bitrix24_Toolbar : CaseCollectionBuilder
     {
+
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
@@ -21,13 +22,11 @@ namespace ATframework3demo.TestCases
             caseCollection.Add(new TestCase("Открыть 'все аттестации'", homePage => openAllAttestationPage(homePage)));
             return caseCollection;
         }
-
         void openProfilesPage(PortalHomePage homePage)
         {
 
             homePage
-                .LeftMenu
-                .OpenSkillMap()
+                .GoToSkillmap()             // перейти во вкладу skillmap по uri
                 .Toolbar                    // объект тулбара
                 .ClickOnAddProfileBtn();    // кликнуть на кнопку добавить 
         }
@@ -35,8 +34,7 @@ namespace ATframework3demo.TestCases
         void openSkillmapMainPage(PortalHomePage homePage)
         {
             homePage
-                .LeftMenu
-                .OpenSkillMap()
+                .GoToSkillmap()                     // перейти во вкладу skillmap по uri
                 .Toolbar                            // объект тулбара
                 .ClickOnSpecialistProfilesBtn();    // кликнуть на кнопку профили специалистов
         }
@@ -44,8 +42,7 @@ namespace ATframework3demo.TestCases
         void openMyProgressPage(PortalHomePage homePage)
         {
             homePage
-                .LeftMenu
-                .OpenSkillMap()
+                .GoToSkillmap()             // перейти во вкладу skillmap по uri
                 .Toolbar                    // объект тулбара
                 .ClickOnMyProgressBtn();    // кликнуть на кнопку мой прогресс
         }
@@ -53,10 +50,9 @@ namespace ATframework3demo.TestCases
         void openAllAttestationPage(PortalHomePage homePage)
         {
             homePage
-                .LeftMenu
-                .OpenSkillMap()
+                .GoToSkillmap()             // перейти во вкладу skillmap по uri
                 .Toolbar                    // объект тулбара
-                .ClickOnAnalyticsBtn(1);    // кликнуть на кнопку аналитика и отчеты -> все аттестации
+                .ClickOnAnalyticsBtn(6);    // кликнуть на кнопку аналитика и отчеты -> все аттестации
         }
     }
 }
