@@ -7,7 +7,7 @@ using ATframework3demo.BaseFramework;
 using ATframework3demo.PageObjects.CRM;
 using ATframework3demo.TestEntities;
 
-namespace ATframework3demo.TestCases
+namespace ATframework3demo.TestCases.OldCases
 {
     public class Case_Bitrix24_CRM : CaseCollectionBuilder
     {
