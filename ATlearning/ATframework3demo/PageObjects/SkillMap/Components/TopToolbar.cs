@@ -52,15 +52,28 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
             return new MyProgressPage();
         }
 
+        /// <summary>
+        /// Кликает по кнопке "аналитика и отчеты" и после переходит во вкладку с выбранным номером (1-5)
+        /// </summary>
+        /// <param name="listItemNumber">Номер элемента в списке</param>
+        /// <returns></returns>
+        /// <exception cref="NoSuchElementException"></exception>
         public object ClickOnAnalyticsBtn(int listItemNumber)
         {
             AnalyticsBtn.Click();
 
             var PopupLink = new WebItem(
             $"(//div[@class='menu-popup-items']/a)[{listItemNumber}]",
-            $"Ссылка номер {listItemNumber}");
+            $"Ссылка номер {listItemNumber} в попапе 'Аналитика и отчеты'");
 
-            PopupLink.Click();
+            try
+            {
+                PopupLink.Click();
+            }
+            catch(NoSuchElementException)
+            {
+                Log.Error($"В тулбаре в попапе 'Аналитика и отчеты' выбран неверный пункт меню (нет элемента под номером {listItemNumber})");
+            }
 
             switch(listItemNumber)
             {
@@ -80,7 +93,6 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
                     return new StatByProfilesGraphPage();
 
                 default:
-                    Log.Error("В тулбаре в попапе 'Аналитика и отчеты' выбран неверный пункт меню");
                     throw new NoSuchElementException();
             }
         }
