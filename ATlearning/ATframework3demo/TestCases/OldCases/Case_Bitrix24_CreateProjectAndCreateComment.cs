@@ -8,7 +8,7 @@ using ATframework3demo.PageObjects.CRM;
 using ATframework3demo.PageObjects.NewsFeed;
 using ATframework3demo.TestEntities;
 
-namespace ATframework3demo.TestCases
+namespace ATframework3demo.TestCases.OldCases
 {
     public class Case_Bitrix24_CreateProjectAndCreateComment : CaseCollectionBuilder
     {
@@ -18,14 +18,14 @@ namespace ATframework3demo.TestCases
             // caseCollection.Add(new TestCase("Создание проекта и написание поста в проект", homePage => SeeCommentByOtherUser(homePage)));
             return caseCollection;
         }
-        
+
         void SeeCommentByOtherUser(PortalHomePage homePage)
         {
             var user1 = new Bitrix24CRMcontacts { Name = "user1_" + HelperMethods.GetDateTimeSaltString() };
             user1.CreateByAPI(TestCase.RunningTestCase.TestPortal);
             string projName = "project_" + HelperMethods.GetDateTimeSaltString();
             string text = "text_" + HelperMethods.GetDateTimeSaltString();
-        
+
             // создание переменной класса ProjectFeed
             var project = homePage
                 .LeftMenu            // меню слева на главной странице
@@ -36,13 +36,13 @@ namespace ATframework3demo.TestCases
                 .ToСonfidentiality() // переход во вкладку конфиденциальность
                 .ToMembers()         // переход во вкладку участники
                 .CreateProject();    // создание проекта
-        
+
             // создание комментария и перенаправление на вкладку класса ProjectFeed
             var Comment = project
                 .ClickTypeMessageArea() // кликнуть по полю отправки сообщений
                 .AddText(text)          // добавить текст сообщения
                 .Send();                // отправить сообщение
-        
+
             // проверка того, что комментарий с набранным ранее текстом существует
             bool isCommentExists = Comment.FindPostByText(text);
             if (!isCommentExists)

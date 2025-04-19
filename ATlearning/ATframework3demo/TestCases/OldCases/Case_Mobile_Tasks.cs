@@ -3,7 +3,7 @@ using atFrameWork2.TestEntities;
 using ATframework3demo.PageObjects.Mobile;
 using atFrameWork2.BaseFramework.LogTools;
 
-namespace ATframework3demo.TestCases
+namespace ATframework3demo.TestCases.OldCases
 {
     public class Case_Mobile_Tasks : CaseCollectionBuilder
     {

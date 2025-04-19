@@ -4,7 +4,7 @@ using ATframework3demo.PageObjects.Mobile;
 using atFrameWork2.BaseFramework.LogTools;
 using ATframework3demo.BaseFramework;
 
-namespace ATframework3demo.TestCases
+namespace ATframework3demo.TestCases.OldCases
 {
     public class Case_Mobile_Tasks2 : CaseCollectionBuilder
     {
@@ -19,7 +19,7 @@ namespace ATframework3demo.TestCases
         void CreateDealCRM(MobileHomePage homePage)
         {
             string dealName = "deal_" + HelperMethods.GetDateTimeSaltString();
-            
+
             var CRMpage = homePage
                 .TabsPanel
                 .SelectMore()   // выбрать "еще" снизу
@@ -32,7 +32,7 @@ namespace ATframework3demo.TestCases
                 .AddFirstContact()      // добавить контакт в сделку
                 .SetSum(100)            // установить сумму сделки
                 .CreateDeal();          // создать сделку
-            
+
             // проверка того, что сделка создалась
             bool isDealCorrect = dealPage.CheckDealName(dealName);
 

@@ -4,7 +4,7 @@ using atFrameWork2.PageObjects;
 using atFrameWork2.SeleniumFramework;
 using ATframework3demo.PageObjects;
 
-namespace ATframework3demo.TestCases
+namespace ATframework3demo.TestCases.OldCases
 {
     public class Case_Bitrix24_Settings : CaseCollectionBuilder
     {

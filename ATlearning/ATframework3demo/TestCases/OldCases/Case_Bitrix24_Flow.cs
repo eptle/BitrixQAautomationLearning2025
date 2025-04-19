@@ -7,7 +7,7 @@ using ATframework3demo.BaseFramework;
 using ATframework3demo.TestEntities;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace ATframework3demo.TestCases
+namespace ATframework3demo.TestCases.OldCases
 {
     public class Case_Bitrix24_Flow : CaseCollectionBuilder
     {
@@ -17,23 +17,23 @@ namespace ATframework3demo.TestCases
             // caseCollection.Add(new TestCase("Создание потока с распределением задач по очереди (несколько юзеров, проверка грида)", homePage => FlowWithMultipleUsers(homePage)));
             return caseCollection;
         }
-        
+
         void FlowWithMultipleUsers(PortalHomePage homePage)
         {
             string date = HelperMethods.GetDateTimeSaltString();
-        
+
             // создание пользователей с именами username1 и username2
             var user1 = TestCase.RunningTestCase.CreatePortalTestUser(false);
             string username1 = user1.NameLastName;
-        
+
             var user2 = TestCase.RunningTestCase.CreatePortalTestUser(false);
             string username2 = user2.NameLastName;
-        
+
             List<string> users = new List<string> { username1, username2 };
-        
+
             string flowName = "flow_" + date;
-            List<string> tasks = new List<string> { "task1_" + date, "task2_" + date }; 
-        
+            List<string> tasks = new List<string> { "task1_" + date, "task2_" + date };
+
             var flowPage = homePage     //
                 .LeftMenu                   // левое меню
                 .OpenTasks()                // открыть задачи
@@ -47,10 +47,10 @@ namespace ATframework3demo.TestCases
                 .OutOfPopup()               // закрыть всплывающее окно со списком пользователей
                 .ToControl()                // перейти в "управление" потока
                 .CreateFlow();              // нажать на кнопку "создать поток"                 
-        
+
             WebDriverActions.Refresh();
-        
-            foreach ( string task in tasks )
+
+            foreach (string task in tasks)
             {
                 flowPage
                 .CreateTaskBtn(flowName)    // нажать на кнопку "создать задачу" напротив потока
