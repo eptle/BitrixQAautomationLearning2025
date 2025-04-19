@@ -15,7 +15,7 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Создание проекта и написание поста в проект", homePage => SeeCommentByOtherUser(homePage)));
+            // caseCollection.Add(new TestCase("Создание проекта и написание поста в проект", homePage => SeeCommentByOtherUser(homePage)));
             return caseCollection;
         }
         

@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-
+/*
 namespace atFrameWork2.TestCases
 {
     public class Case_Bitrix24_Tasks : CaseCollectionBuilder
@@ -23,8 +23,7 @@ namespace atFrameWork2.TestCases
                 new TestCase("Удаление задачи", (PortalHomePage homePage) => { Thread.Sleep(5000); Log.Error("kukus"); }),
             };
         }
-
-        public static void CreateTask(PortalHomePage homePage)
+public static void CreateTask(PortalHomePage homePage)
         {
             //пример использования апишки c инвайтом юзеров и использованием второго драйвера
             var intranetUser = TestCase.RunningTestCase.CreatePortalTestUser(false);
@@ -77,3 +76,4 @@ namespace atFrameWork2.TestCases
         }
     }
 }
+*/

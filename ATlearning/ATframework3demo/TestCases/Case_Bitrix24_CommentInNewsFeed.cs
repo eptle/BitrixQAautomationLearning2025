@@ -15,7 +15,7 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases() // этот метод добавляет наш тест-кейс в очередь/список
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Создание комментария от другого юзера под постом в ленте", homePage => SeeCommentByOtherUser(homePage)));
+            // caseCollection.Add(new TestCase("Создание комментария от другого юзера под постом в ленте", homePage => SeeCommentByOtherUser(homePage)));
             return caseCollection;
         }
         

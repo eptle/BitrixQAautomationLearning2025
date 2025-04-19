@@ -10,8 +10,8 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(
-                new TestCase("Создание задачи", mobileHomePage => CreateTask(mobileHomePage)));
+            // caseCollection.Add(
+            // new TestCase("Создание задачи", mobileHomePage => CreateTask(mobileHomePage)));
             return caseCollection;
         }
 

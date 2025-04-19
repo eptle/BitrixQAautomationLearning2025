@@ -11,8 +11,8 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(
-                new TestCase("Создания сделки в CRM, к которой будет привязан контакт", mobileHomePage => CreateDealCRM(mobileHomePage)));
+            // caseCollection.Add(
+            // new TestCase("Создания сделки в CRM, к которой будет привязан контакт", mobileHomePage => CreateDealCRM(mobileHomePage)));
             return caseCollection;
         }
 

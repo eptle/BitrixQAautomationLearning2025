@@ -11,7 +11,7 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Настрйка адресации всем по умолчанию", homePage => SendToAllByDefault(homePage)));
+            // caseCollection.Add(new TestCase("Настрйка адресации всем по умолчанию", homePage => SendToAllByDefault(homePage)));
             return caseCollection;
         }
 

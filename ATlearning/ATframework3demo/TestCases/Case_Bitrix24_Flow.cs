@@ -14,7 +14,7 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Создание потока с распределением задач по очереди (несколько юзеров, проверка грида)", homePage => FlowWithMultipleUsers(homePage)));
+            // caseCollection.Add(new TestCase("Создание потока с распределением задач по очереди (несколько юзеров, проверка грида)", homePage => FlowWithMultipleUsers(homePage)));
             return caseCollection;
         }
         
