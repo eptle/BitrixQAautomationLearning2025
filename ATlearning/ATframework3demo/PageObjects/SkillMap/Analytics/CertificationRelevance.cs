@@ -2,11 +2,11 @@
 
 namespace ATframework3demo.PageObjects.SkillMap.Analytics
 {
-    public class UsersWithoutCertificationPage
+    public class CertificationRelevance
     {
         public IWebDriver Driver { get; }
 
-        public UsersWithoutCertificationPage(IWebDriver driver = default)
+        public CertificationRelevance(IWebDriver driver = default)
         {
             Driver = driver;
         }

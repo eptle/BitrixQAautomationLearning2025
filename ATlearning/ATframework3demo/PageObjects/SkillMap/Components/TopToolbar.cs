@@ -84,7 +84,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
                     return new IPRlistPage();
 
                 case 3:
-                    return new UsersWithoutCertificationPage();
+                    return new CertificationRelevance();
 
                 case 4:
                     return new StatByProfilesGridPage();
