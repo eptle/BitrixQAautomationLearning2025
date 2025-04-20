@@ -19,7 +19,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
             Toolbar = new TopToolbar(driver);
         }
 
-        public int CurrentPageNum { get; set; } = 1;
+        public int CurrentPage { get; set; } = 1;
 
         public int NumOfPages { get; } = Convert.ToInt16(
             new WebItem(
@@ -54,7 +54,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
                 "//a[@class='main-ui-pagination-arrow main-ui-pagination-next']",
                 "Кнопка 'следующая' снизу грида");
             nextBtn.Click();
-            CurrentPageNum++;
+            CurrentPage++;
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
                 "main-ui-pagination-arrow main-ui-pagination-prev",
                 "Кнопка 'предыдущая' снизу грида");
             prevBtn.Click();
-            CurrentPageNum--;
+            CurrentPage--;
         }
 
         /// <summary>

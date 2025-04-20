@@ -6,6 +6,9 @@ using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap
 {
+    /// <summary>
+    /// Главная страница 
+    /// </summary>
     public class SkillmapMainPage : BaseGridPage
     {
         public IWebDriver Driver { get; }
