@@ -51,7 +51,8 @@ namespace ATframework3demo.TestCases
             homePage
                 .GoToSkillmap()             // перейти во вкладу skillmap по uri
                 .Toolbar                    // объект тулбара
-                .ClickOnAnalyticsBtn(6);    // кликнуть на кнопку аналитика и отчеты -> все аттестации
+                .ClickOnAnalyticsBtn()      // кликнуть на кнопку аналитика и отчеты -> все аттестации
+                .IPRlist();
         }
     }
 }
