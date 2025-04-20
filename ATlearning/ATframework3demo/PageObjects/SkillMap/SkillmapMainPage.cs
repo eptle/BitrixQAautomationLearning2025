@@ -18,6 +18,16 @@ namespace ATframework3demo.PageObjects.SkillMap
             Toolbar = new TopToolbar(driver);
         }
 
+        public WebItem AddProfileBtn { get; } = new WebItem(
+            "//a[contains(@class, 'create-specialist-button')]",
+            "Зеленая кнопка '+Добавить'");
+
+        public CreateSpecialistPage ClickOnAddProfileBtn()
+        {
+            AddProfileBtn.Click();
+            return new CreateSpecialistPage();
+        }
+
         /// <summary>
         /// Выбираем профиль по названию, кликаем по бургеру и после переходим во вкладку с выбранным номером (1-4)
         /// </summary>

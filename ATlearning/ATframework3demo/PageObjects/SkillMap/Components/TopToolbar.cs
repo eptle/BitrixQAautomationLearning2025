@@ -18,10 +18,6 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
             Driver = driver;
         }
 
-        public WebItem AddProfileBtn { get; } = new WebItem(
-            "//a[contains(@class, 'create-specialist-button')]",
-            "Зеленая кнопка 'Добавить'");
-
         public WebItem SpecialistProfilesBtn { get; } = new WebItem(
             "//a[contains(@class, 'specialist-profiles-button')]",
             "Кнопка 'Профили специалистов'");
@@ -34,11 +30,6 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
             "//button[contains(@class, 'analytics-button')]",
             "Кнопка 'Аналитика и отчёты'");
 
-        public CreateSpecialistPage ClickOnAddProfileBtn()
-        {
-            AddProfileBtn.Click();
-            return new CreateSpecialistPage();
-        }
 
         public SkillmapMainPage ClickOnSpecialistProfilesBtn()
         {
