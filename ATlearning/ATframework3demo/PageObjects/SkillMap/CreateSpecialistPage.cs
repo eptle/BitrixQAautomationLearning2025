@@ -68,6 +68,7 @@ namespace ATframework3demo.PageObjects.SkillMap
             var CreateProfileBtn = new WebItem(
             $"(//div[@class='remove-skill-btn ui-btn ui-icon-set --cross-40'])[{num}]",
             $"крестик напротив скилла номер {num}");
+            CreateProfileBtn.Click();
 
             return new CreateSpecialistPage();
         }
