@@ -45,7 +45,8 @@ namespace ATframework3demo.TestCases.Skillmap
         {
             homePage
                 .GoToSkillmap()                                 // перейти во вкладу skillmap по uri
-                .ChooseActionToProfile("Project Manager", 3);   // тыкнуть на бургер напротив Project Manager и выбрать "Аттестовать сотрудника"
+                .ClickOnBurger("Project Manager")   // тыкнуть на бургер напротив Project Manager и выбрать "Аттестовать сотрудника"
+                .CertificateEmployee();
         }
     }
 }
