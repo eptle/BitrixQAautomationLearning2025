@@ -4,12 +4,12 @@ using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap.Analytics
 {
-    public class CertificationRelevance
+    public class CertificationRelevancePage
     {
         public IWebDriver Driver { get; }
         public TopToolbar Toolbar { get; }
 
-        public CertificationRelevance(IWebDriver driver = default)
+        public CertificationRelevancePage(IWebDriver driver = default)
         {
             Driver = driver;
             Toolbar = new TopToolbar(driver);
