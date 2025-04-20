@@ -26,11 +26,6 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
             "//a[contains(@class, 'my-progress-button')]",
             "Кнопка 'Мой прогресс'");
 
-        public WebItem AnalyticsBtn { get; } = new WebItem(
-            "//button[contains(@class, 'analytics-button')]",
-            "Кнопка 'Аналитика и отчёты'");
-
-
         public SkillmapMainPage ClickOnSpecialistProfilesBtn()
         {
             SpecialistProfilesBtn.Click();
@@ -49,43 +44,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
         /// <param name="listItemNumber">Номер элемента в списке</param>
         /// <returns></returns>
         /// <exception cref="NoSuchElementException"></exception>
-        public object ClickOnAnalyticsBtn(int listItemNumber)
-        {
-            AnalyticsBtn.Click();
-
-            var PopupLink = new WebItem(
-            $"(//div[@class='menu-popup-items']/a)[{listItemNumber}]",
-            $"Ссылка номер {listItemNumber} в попапе 'Аналитика и отчеты'");
-
-            try
-            {
-                PopupLink.Click();
-            }
-            catch(NoSuchElementException)
-            {
-                Log.Error($"В тулбаре в попапе 'Аналитика и отчеты' выбран неверный пункт меню (нет элемента под номером {listItemNumber})");
-            }
-
-            switch(listItemNumber)
-            {
-                case 1:
-                    return new AllAttestationsPage();
-
-                case 2:
-                    return new IPRlistPage();
-
-                case 3:
-                    return new CertificationRelevance();
-
-                case 4:
-                    return new StatByProfilesGridPage();
-
-                case 5:
-                    return new StatByProfilesGraphPage();
-
-                default:
-                    throw new NoSuchElementException();
-            }
+        public AnalyticsToolbarPopup ClickOnAnalyticsBtn() => new AnalyticsToolbarPopup(Driver);
         }
     }
 }
