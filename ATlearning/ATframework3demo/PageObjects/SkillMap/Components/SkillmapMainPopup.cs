@@ -8,8 +8,6 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
     /// </summary>
     public class SkillmapMainPopup
     {
-        public WebItem burger;
-
         private string ID;
 
         public IWebDriver Driver { get; }
