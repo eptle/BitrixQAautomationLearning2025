@@ -45,6 +45,5 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
         /// <returns></returns>
         /// <exception cref="NoSuchElementException"></exception>
         public AnalyticsToolbarPopup ClickOnAnalyticsBtn() => new AnalyticsToolbarPopup(Driver);
-        }
     }
 }
