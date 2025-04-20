@@ -63,7 +63,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
         public void PreviousPage()
         {
             var prevBtn = new WebItem(
-                "main-ui-pagination-arrow main-ui-pagination-prev",
+                "//a[@class='main-ui-pagination-arrow main-ui-pagination-prev']",
                 "Кнопка 'предыдущая' снизу грида");
             prevBtn.Click();
             CurrentPage--;
