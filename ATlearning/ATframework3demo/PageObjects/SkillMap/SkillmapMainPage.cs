@@ -41,6 +41,8 @@ namespace ATframework3demo.PageObjects.SkillMap
                 $"//span[contains(text(), '{profileName}')]/../../..//a", 
                 $"Бургер напротив элемента с именем {profileName}");
 
+            burger.Click();
+
             var getID = new WebItem(
                 $"//span[contains(text(), '{profileName}')]/../../../td[2]//span",
                 $"ID профиля {profileName}");
