@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using ATframework3demo.PageObjects.SkillMap.Components;
 using atFrameWork2.SeleniumFramework;
+using atFrameWork2.BaseFramework;
 
 namespace ATframework3demo.PageObjects.SkillMap.Components
 {
@@ -40,6 +41,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
             var switcher = new WebItem(
                 "//a[@class='main-ui-pagination-arrow']",
                 "Переключатель все/по_страницам снизу грида");
+            Waiters.StaticWait_s(3);
             switcher.Click();
 
             PaginationIsEnabled = !PaginationIsEnabled;
@@ -53,6 +55,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
             var nextBtn = new WebItem(
                 "//a[@class='main-ui-pagination-arrow main-ui-pagination-next']",
                 "Кнопка 'следующая' снизу грида");
+            Waiters.StaticWait_s(3);
             nextBtn.Click();
             CurrentPage++;
         }
@@ -65,6 +68,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
             var prevBtn = new WebItem(
                 "//a[@class='main-ui-pagination-arrow main-ui-pagination-prev']",
                 "Кнопка 'предыдущая' снизу грида");
+            Waiters.StaticWait_s(3);
             prevBtn.Click();
             CurrentPage--;
         }
