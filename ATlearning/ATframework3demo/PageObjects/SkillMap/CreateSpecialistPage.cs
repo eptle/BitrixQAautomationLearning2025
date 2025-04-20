@@ -22,7 +22,7 @@ namespace ATframework3demo.PageObjects.SkillMap
             "//input[@id='specialistName']",
             "инпут 'Введите название профиля'");
 
-        public WebItem AddProfileBtn { get; } = new WebItem(
+        public WebItem AddSkillBtn { get; } = new WebItem(
             "//div[@id='addSkillBtn']",
             "кнопка Добавить компетенцию");
 
@@ -40,16 +40,16 @@ namespace ATframework3demo.PageObjects.SkillMap
             return new CreateSpecialistPage();
         }
 
-        public CreateSpecialistPage ClickOnAddProfileBtn()
+        public CreateSpecialistPage ClickOnAddSkillBtn()
         {
-            AddProfileBtn.Click();
+            AddSkillBtn.Click();
             return new CreateSpecialistPage();
         }
 
-        public CreateSpecialistPage ClickOnCreateProfileBtn()
+        public SkillmapMainPage ClickOnCreateProfileBtn()
         {
             CreateProfileBtn.Click();
-            return new CreateSpecialistPage();
+            return new SkillmapMainPage();
         }
 
         public CreateSpecialistPage ClickOnCancelBtn()
@@ -96,7 +96,7 @@ namespace ATframework3demo.PageObjects.SkillMap
             for (int i = 0; i < 3; i++)
             {
                 var grade = new WebItem(
-                    $"//label/input[@name='skills[{numOfSkill}][scores][{skillGrades[i]}][value]']",
+                    $"//input[@name='skills[{numOfSkill - 1}][scores][{i}][value]']",
                     $"оценка номер {i + 1} для профиля {skillName}");
                 grade.SendKeys(Convert.ToString(skillGrades[i]));
             }
