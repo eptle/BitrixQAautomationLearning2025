@@ -27,8 +27,7 @@ namespace ATframework3demo.TestCases
 
             homePage
                 .GoToSkillmap() // перейти во вкладу skillmap по uri
-                .Toolbar        // объект тулбара
-                .Click();       // кликнуть на кнопку добавить 
+                .ClickOnAddProfileBtn();       // кликнуть на кнопку добавить 
         }
 
         void openSkillmapMainPage(PortalHomePage homePage)
