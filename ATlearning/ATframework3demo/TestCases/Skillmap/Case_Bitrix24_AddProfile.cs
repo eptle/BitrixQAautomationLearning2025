@@ -35,8 +35,9 @@ namespace ATframework3demo.TestCases.Skillmap
                 .ClickOnRemoveSkillBtn(2)
                 .InputProfileName(profileName)
                 .ClickOnCreateProfileBtn()
-                .ChooseActionToProfile(profileName, 1);
-            Waiters.StaticWait_s(5);
+                .ClickOnBurger(profileName)
+                .OpenProfile()
+                .CheckProfile(profileName, new List<string> { skill1, skill2 }, new List<int[]> { grades, grades});
         }
 
         void cancelCreatingProfile(PortalHomePage homePage)
