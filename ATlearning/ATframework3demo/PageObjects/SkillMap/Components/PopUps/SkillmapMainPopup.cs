@@ -1,7 +1,7 @@
 ﻿using atFrameWork2.SeleniumFramework;
 using OpenQA.Selenium;
 
-namespace ATframework3demo.PageObjects.SkillMap.Components
+namespace ATframework3demo.PageObjects.SkillMap.Components.PopUps
 {
     /// <summary>
     /// Класс для попапа на главной странице напротив каждого профиля

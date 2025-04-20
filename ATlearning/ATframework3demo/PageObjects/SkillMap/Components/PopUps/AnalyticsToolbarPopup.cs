@@ -2,7 +2,7 @@
 using ATframework3demo.PageObjects.SkillMap.Analytics;
 using OpenQA.Selenium;
 
-namespace ATframework3demo.PageObjects.SkillMap.Components
+namespace ATframework3demo.PageObjects.SkillMap.Components.PopUps
 {
     public class AnalyticsToolbarPopup
     {
