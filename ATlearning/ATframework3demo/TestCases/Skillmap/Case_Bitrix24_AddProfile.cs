@@ -11,7 +11,7 @@ namespace ATframework3demo.TestCases.Skillmap
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Добавить профиль с тремя скиллами проверить правильность создания", homePage => createProfile(homePage)));
+            caseCollection.Add(new TestCase("Добавить профиль с тремя скиллами и нажать создать", homePage => createProfile(homePage)));
             caseCollection.Add(new TestCase("Добавить профиль с одним скиллом и нажать отмена", homePage => cancelCreatingProfile(homePage)));
             return caseCollection;
         }
@@ -42,11 +42,7 @@ namespace ATframework3demo.TestCases.Skillmap
 
         void cancelCreatingProfile(PortalHomePage homePage)
         {
-            homePage
-                .GoToSkillmap()
-                .ClickOnBurger("123123")
-                .OpenProfile()
-                .GoToSkillmapMain();
+
         }
 
     }

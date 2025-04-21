@@ -19,13 +19,6 @@ namespace ATframework3demo.TestCases.Skillmap
         {
             var testPortal = TestCase.RunningTestCase.TestPortal;
             string query = File.ReadAllText(@"../../../TestEntities/queries/clear_db_and_create_25_specialists.sql");
-            TestCase.RunningTestCase.ExecutePHP("global $DB;\r\n" +
-                $"$res = $DB->Query(\"{query}\");" +
-            @"$rows = [];
-            while ($row = $res->Fetch()) 
-	            $rows[] = $row;
-            echo json_encode($rows);");
-
             homePage
                 .GoToSkillmap();
         }

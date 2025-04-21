@@ -2,6 +2,7 @@
 using atFrameWork2.SeleniumFramework;
 using ATframework3demo.PageObjects.SkillMap.Analytics;
 using ATframework3demo.PageObjects.SkillMap.Components;
+using ATframework3demo.PageObjects.SkillMap.Components.PopUps;
 using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap

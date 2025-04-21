@@ -74,7 +74,7 @@ namespace ATframework3demo.PageObjects.SkillMap
         }
 
         /// <summary>
-        /// Заполнение формы компетеции и оценки этой компетеции
+        /// Заполнение поля компетеции и оценок этой компетеции
         /// </summary>
         /// <param name="numOfSkill">Каким скилл идется по счету в форме</param>
         /// <param name="skillName">Название компетенции</param>
