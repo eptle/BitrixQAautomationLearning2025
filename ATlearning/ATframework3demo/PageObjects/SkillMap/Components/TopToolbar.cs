@@ -1,6 +1,7 @@
 ﻿using atFrameWork2.BaseFramework.LogTools;
 using atFrameWork2.SeleniumFramework;
 using ATframework3demo.PageObjects.SkillMap.Analytics;
+using ATframework3demo.PageObjects.SkillMap.Components.PopUps;
 using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap.Components
@@ -39,11 +40,15 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
         }
 
         /// <summary>
-        /// Кликает по кнопке "аналитика и отчеты" и после переходит во вкладку с выбранным номером (1-5)
+        /// Кликает по кнопке "аналитика и отчеты"
         /// </summary>
-        /// <param name="listItemNumber">Номер элемента в списке</param>
         /// <returns></returns>
-        /// <exception cref="NoSuchElementException"></exception>
         public AnalyticsToolbarPopup ClickOnAnalyticsBtn() => new AnalyticsToolbarPopup(Driver);
+
+        /// <summary>
+        /// Кликает по кнопке "ИПР"
+        /// </summary>
+        /// <returns></returns>
+        public IPRtoolbarPopup ClickOnIPRBtn() => new IPRtoolbarPopup(Driver);
     }
 }
