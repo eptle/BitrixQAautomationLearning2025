@@ -67,5 +67,15 @@ namespace ATframework3demo.PageObjects.SkillMap.Components.PopUps
 
             return new CertificationListPage();
         }
+
+        public CircularDiagramPage SeeStatistics()
+        {
+            var SeeCertificationsBtn = new WebItem(
+            $"(//div[@class='menu-popup-items']/a[contains(@href, '/{ID}/')])[5]",
+            "Кнопка 'посмотреть статистику'");
+            SeeCertificationsBtn.Click();
+
+            return new CircularDiagramPage();
+        }
     }
 }

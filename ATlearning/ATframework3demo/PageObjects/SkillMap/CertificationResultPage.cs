@@ -1,14 +1,73 @@
-﻿using OpenQA.Selenium;
+﻿using atFrameWork2.SeleniumFramework;
+using ATframework3demo.PageObjects.SkillMap.Components;
+using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap
 {
     public class CertificationResultPage
     {
+        public TopToolbar Toolbar { get; }
+
         public IWebDriver Driver { get; }
 
         public CertificationResultPage(IWebDriver driver = default)
         {
             Driver = driver;
+            Toolbar = new TopToolbar(driver);
+        }
+
+        public WebItem CertificateBtn { get; } = new WebItem(
+            "//button[@class='ui-btn ui-btn-success skillmap-btn']",
+            "кнопка 'Оценить' внизу формы");
+
+        public WebItem UserSelectField { get; } = new WebItem(
+            "//select[@id='userSelect']",
+            "кнопка 'Оценить' внизу формы");
+
+        public WebItem ProfileSelectField { get; } = new WebItem(
+            "//select[@id='profileSelect']",
+            "кнопка 'Оценить' внизу формы");
+
+        public CertificationResultPage ClickOnSertificateBtn()
+        {
+            CertificateBtn.Click();
+            return new CertificationResultPage();
+        }
+
+        public CertificationResultPage SelectUser(string username)
+        {
+            UserSelectField.Click();
+            var user = new WebItem(
+                $"//select[@id='userSelect']/option[contains(text(), '{username}')]",
+                $"Выбрать сотрудника {username}");
+
+            user.Click();
+
+            return new CertificationResultPage();
+        }
+
+        public CertificationResultPage SelectProfile(string profilename)
+        {
+            ProfileSelectField.Click();
+            var user = new WebItem(
+                $"//select[@id='profileSelect']/option[contains(text(), '{profilename}')]",
+                $"Выбрать профиль {profilename}");
+
+            user.Click();
+            return new CertificationResultPage();
+        }
+
+        public CertificationResultPage GradeUser(int[] grades)
+        {
+            for(int i = 1; i < grades.Length + 1; i++)
+            {
+                var gradeInputs = new WebItem(
+                $"(//div[@id='skillsContainer']//input)[{i}]",
+                "");
+                gradeInputs.SendKeys(Convert.ToString(grades[i - 1]));
+            }
+
+            return new CertificationResultPage();
         }
     }
 }
