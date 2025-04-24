@@ -19,7 +19,8 @@ namespace ATframework3demo.TestCases
             caseCollection.Add(new TestCase("Открыть 'создание профиля'", homePage => openProfilesPage(homePage)));
             caseCollection.Add(new TestCase("Открыть 'skillmap'", homePage => openSkillmapMainPage(homePage)));
             caseCollection.Add(new TestCase("Открыть 'мой прогресс'", homePage => openMyProgressPage(homePage)));
-            caseCollection.Add(new TestCase("Открыть 'все аттестации'", homePage => openAllAttestationPage(homePage)));
+            caseCollection.Add(new TestCase("Прокликать ссылки в попапе 'ИПР'", homePage => checkIPRpopup(homePage)));
+            caseCollection.Add(new TestCase("Прокликать ссылки в попапе 'отчеты'", homePage => checkAnalyticsPopup(homePage)));
             return caseCollection;
         }
         void openProfilesPage(PortalHomePage homePage)
@@ -46,13 +47,36 @@ namespace ATframework3demo.TestCases
                 .ClickOnMyProgressBtn();    // кликнуть на кнопку мой прогресс
         }
 
-        void openAllAttestationPage(PortalHomePage homePage)
+        void checkIPRpopup(PortalHomePage homePage)
+        {
+            homePage
+                .GoToSkillmap()             // перейти во вкладу skillmap по uri
+                .Toolbar                    // объект тулбара
+                .ClickOnIPRBtn()
+                .CreateIPR()
+                .Toolbar
+                .ClickOnIPRBtn()
+                .IPRlist()
+                .Toolbar
+                .ClickOnSpecialistProfilesBtn();
+        }
+
+        void checkAnalyticsPopup(PortalHomePage homePage)
         {
             homePage
                 .GoToSkillmap()             // перейти во вкладу skillmap по uri
                 .Toolbar                    // объект тулбара
                 .ClickOnAnalyticsBtn()      // кликнуть на кнопку аналитика и отчеты -> все аттестации
-                .IPRlist();
+                .AllAttestations()
+                .Toolbar
+                .ClickOnAnalyticsBtn()
+                .CertificationRelevance()
+                .Toolbar
+                .ClickOnAnalyticsBtn()
+                .StatByProfiles()
+                .Toolbar
+                .ClickOnSpecialistProfilesBtn();
+
         }
     }
 }

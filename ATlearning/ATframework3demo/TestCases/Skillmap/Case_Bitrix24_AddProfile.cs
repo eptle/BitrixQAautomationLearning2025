@@ -36,8 +36,18 @@ namespace ATframework3demo.TestCases.Skillmap
                 .InputProfileName(profileName)
                 .ClickOnCreateProfileBtn()
                 .ClickOnBurger(profileName)
-                .OpenProfile()
-                .CheckProfile(profileName, new List<string> { skill1, skill2 }, new List<int[]> { grades, grades});
+                .OpenProfile();
+
+            ProfilePage.CheckProfile(
+                profileName, 
+                new List<string> { skill1, skill2 },
+                new List<int[]> { grades, grades});
+
+            ProfilePage
+                .EditProfile()
+                .InputProfileName("2" + profileName)
+                .FillSkillForm(1, "biba", new int[] { 1, 2, 3 })
+                .ClickOnSaveChangesBtn();
         }
 
         void cancelCreatingProfile(PortalHomePage homePage)
