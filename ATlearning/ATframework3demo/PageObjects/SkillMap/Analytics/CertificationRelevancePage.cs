@@ -7,6 +7,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Analytics
     public class CertificationRelevancePage
     {
         public IWebDriver Driver { get; }
+
         public TopToolbar Toolbar { get; }
 
         public CertificationRelevancePage(IWebDriver driver = default)

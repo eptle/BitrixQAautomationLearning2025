@@ -7,6 +7,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Analytics
     public class AllAttestationsPage
     {
         public IWebDriver Driver { get; }
+
         public TopToolbar Toolbar { get; }
 
         public AllAttestationsPage(IWebDriver driver = default)
