@@ -4,6 +4,9 @@ using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap.Components.PopUps
 {
+    /// <summary>
+    /// Класс для попапа при клике на "отчеты" на тулбаре
+    /// </summary>
     public class AnalyticsToolbarPopup
     {
         public IWebDriver Driver { get; }
@@ -13,8 +16,8 @@ namespace ATframework3demo.PageObjects.SkillMap.Components.PopUps
             Driver = driver;
 
             var AnalyticsBtn = new WebItem(
-            "//button[contains(@class, 'analytics-button')]",
-            "Кнопка 'Аналитика и отчёты'");
+                "//button[contains(@class, 'analytics-button')]",
+                "Кнопка 'отчёты'");
 
             AnalyticsBtn.Click();
         }
@@ -22,51 +25,34 @@ namespace ATframework3demo.PageObjects.SkillMap.Components.PopUps
         public AllAttestationsPage AllAttestations()
         {
             var OpenProfileBtn = new WebItem(
-            $"(//div[@class='menu-popup-items']/a)[1]",
-            "Кнопка 'все атестации'");
+                "//a[contains(@href, 'all-certification')]",
+                "Кнопка 'все атестации'");
+
             OpenProfileBtn.Click();
 
             return new AllAttestationsPage();
         }
 
-        public IPRlistPage IPRlist()
-        {
-            var EditProfileBtn = new WebItem(
-            $"(//div[@class='menu-popup-items']/a)[2]",
-            "Кнопка 'список всех ипр'");
-            EditProfileBtn.Click();
-
-            return new IPRlistPage();
-        }
-
         public CertificationRelevancePage CertificationRelevance()
         {
             var CertificateEmployeeBtn = new WebItem(
-            $"(//div[@class='menu-popup-items']/a)[3]",
-            "Кнопка 'актуальность аттестаций'");
+                "//a[contains(@href, 'certification-relevance')]",
+                "Кнопка 'актуальность аттестаций'");
+
             CertificateEmployeeBtn.Click();
 
             return new CertificationRelevancePage();
         }
 
-        public StatByProfilesGridPage StatByProfilesGrid()
+        public StatByProfilesPage StatByProfiles()
         {
             var SeeCertificationsBtn = new WebItem(
-            $"(//div[@class='menu-popup-items']/a)[4]",
-            "Кнопка 'статистика по профилям (грид)'");
+                "//a[contains(@href, 'overall-grade')]",
+                "Кнопка 'статистика по профилям (грид)'");
+
             SeeCertificationsBtn.Click();
 
-            return new StatByProfilesGridPage();
-        }
-
-        public StatByProfilesGraphPage StatByProfilesGraph()
-        {
-            var SeeCertificationsBtn = new WebItem(
-            $"(//div[@class='menu-popup-items']/a)[5]",
-            "Кнопка 'статистика по профилям (график)'");
-            SeeCertificationsBtn.Click();
-
-            return new StatByProfilesGraphPage();
+            return new StatByProfilesPage();
         }
     }
 }
