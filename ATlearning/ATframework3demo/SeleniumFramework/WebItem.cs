@@ -173,5 +173,19 @@ namespace atFrameWork2.SeleniumFramework
                 PrintActionInfo($"Получен размер '{elementSize}'. Элемент");
             return elementSize;
         }
+
+        /// <summary>
+        /// Очищает инпут
+        /// </summary>
+        /// <param name="driver"></param>
+        /// <returns></returns>
+        public void Clear(IWebDriver driver = default)
+        {
+            Execute((element, drv) => { element.Clear(); }, driver);
+
+            PrintActionInfo("Очистка текста в поле");
+
+            Waiters.StaticWait_s(DefaultWaitAfterActiveAction_s);
+        }
     }
 }
