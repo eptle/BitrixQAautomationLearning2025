@@ -1,5 +1,6 @@
 ﻿using atFrameWork2.BaseFramework;
 using atFrameWork2.PageObjects;
+using ATframework3demo.BaseFramework;
 
 namespace ATframework3demo.TestCases.Skillmap
 {
@@ -16,7 +17,27 @@ namespace ATframework3demo.TestCases.Skillmap
         }
         void CreateIPR(PortalHomePage homePage)
         {
+            string date = HelperMethods.GetDateTimeSaltString();
+            string profileName = "profile_1_" + date;
+            string employeeName = "employee_1_" + date;
+            string skill1 = "Skill_1_ " + date;
+            int[] grades = { 10, 20, 30 };
 
+            homePage
+                .GoToEmployee()
+                .InviteEmployee()
+                .AddEmployee(employeeName);
+
+
+            var IPRPage = homePage
+                .GoToSkillmap()
+                .ClickOnAddProfileBtn()
+                .FillSkillForm(1, skill1, grades)
+                .InputProfileName(profileName)
+                .ClickOnCreateProfileBtn()
+                .ClickOnIPR()
+                .ClickOnAddIPR()
+                .CreateIPR(employeeName);
         }
         void TaskIPR(PortalHomePage homePage)
         {
