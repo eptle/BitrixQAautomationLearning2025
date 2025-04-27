@@ -16,7 +16,7 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Создать профиль с двумя скиллами и аттестовать юзера", homePage => GradeUser(homePage)));
+            caseCollection.Add(new TestCase("Создать профиль с двумя компетенциями и аттестовать юзера", homePage => GradeUser(homePage)));
             return caseCollection;
         }
 
