@@ -38,7 +38,7 @@ namespace ATframework3demo.PageObjects.SkillMap
         private bool CheckProfileName(string profileName)
         {
             var name = new WebItem(
-                "(//input[@class='ui-ctl-element ui-ctl-textbox ui-ctl-input' and @type='text'])[1]",
+                "(//input[@class='ui-ctl-element ui-ctl-textbox ui-ctl-input input-view' and @type='text'])[1]",
                 "Название профиля");
 
             if (name.GetAttribute("value") == profileName)
@@ -52,7 +52,7 @@ namespace ATframework3demo.PageObjects.SkillMap
             for (int i = 2; i <= skills.Count + 1; i++) // ублюдская реализация, надо будет переделать
             {
                 var skillName = new WebItem(
-                    $"(//input[@class='ui-ctl-element ui-ctl-textbox ui-ctl-input' and @type='text'])[{i}]",
+                    $"(//input[@class='ui-ctl-element ui-ctl-textbox ui-ctl-input input-view' and @type='text'])[{i}]",
                     $"Скилл номер {i - 1}");
 
                 if (skillName.GetAttribute("value") != skills[i - 2])
