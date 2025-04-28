@@ -36,10 +36,10 @@ namespace ATframework3demo.PageObjects.SkillMap
             return new EditProfilePage();
         }
 
-        public EditProfilePage ClickOnSaveChangesBtn()
+        public ProfileViewPage ClickOnSaveChangesBtn()
         {
             SaveChangesBtn.Click();
-            return new EditProfilePage();
+            return new ProfileViewPage();
         }
 
         public EditProfilePage CancelBtnChangesBtn()
