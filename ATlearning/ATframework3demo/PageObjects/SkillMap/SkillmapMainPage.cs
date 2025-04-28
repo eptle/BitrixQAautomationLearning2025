@@ -38,6 +38,22 @@ namespace ATframework3demo.PageObjects.SkillMap
         /// </summary>
         /// <param name="profileName">Название профиля специалиста</param>
         /// <returns></returns>
-        public SkillmapMainPopup ClickOnBurger(string profileName) => new SkillmapMainPopup(profileName, Driver);     
+        public SkillmapMainPopup ClickOnBurger(string profileName) => new SkillmapMainPopup(profileName, Driver);
+
+        public bool IsProfileExists(string profileName)
+        {
+            var profile = new WebItem(
+                $"//span[@class='main-grid-cell-content' and contains(text(), '{profileName}')]",
+                $"Профиль с именем {profileName}");
+            try
+            {
+                profile.InnerText();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
