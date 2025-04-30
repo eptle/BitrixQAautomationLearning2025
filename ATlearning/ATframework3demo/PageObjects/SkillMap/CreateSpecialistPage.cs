@@ -46,10 +46,10 @@ namespace ATframework3demo.PageObjects.SkillMap
             return new CreateSpecialistPage();
         }
 
-        public SkillmapMainPage ClickOnCreateProfileBtn()
+        public TopToolbar ClickOnCreateProfileBtn()
         {
             CreateProfileBtn.Click();
-            return new SkillmapMainPage();
+            return new TopToolbar();
         }
 
         public SkillmapMainPage ClickOnCancelBtn()

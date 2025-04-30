@@ -49,10 +49,10 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
             return new MyProgressPage();
         }
 
-        public SkillmapMainPage ClickOnIPR()
+        public TopToolbar ClickOnIPR()
         {
             IPRBtn.Click();
-            return new SkillmapMainPage();
+            return new TopToolbar();
         }
         public IPRstatPage ClickOnAddIPR()
         {
