@@ -30,7 +30,7 @@ namespace ATframework3demo.PageObjects.SkillMap.IPR
             "Описание ИПР");
 
         public WebItem DeadlineOfIPRBtn { get; } = new WebItem(
-            "//input[@id='deadline']",
+            "//input[@type='datetime-local']",
             "Дедлайн ИПР");
 
         public WebItem CreateIPRBtn { get; } = new WebItem(
@@ -57,7 +57,7 @@ namespace ATframework3demo.PageObjects.SkillMap.IPR
             GetEmployeeBtn(employeeName).Click();
             GetProfileBtn(profileName).Click();
             DescriptionSpecialistBtn.SendKeys("description of IPR");
-            DeadlineOfIPRBtn.SendKeys("05.05.2025");
+            DeadlineOfIPRBtn.SendKeys("2026-01-05T13:15");
             CreateIPRBtn.Click();
             return new IPRlistPage();
         }
