@@ -19,15 +19,15 @@ namespace ATframework3demo.TestCases.Skillmap
         {
             string date = HelperMethods.GetDateTimeSaltString();
             string profileName = "profile_1_" + date;
-            string employeeName = "employee_1_" + date;
+            string employeeName = "test1";
             string skill1 = "Skill_1_ " + date;
             int[] grades = { 10, 20, 30 };
-
+            /*
             homePage
                 .GoToEmployee()
                 .InviteEmployee()
                 .AddEmployee(employeeName);
-
+            */
 
             var IPRPage = homePage
                 .GoToSkillmap()
