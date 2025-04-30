@@ -1,7 +1,12 @@
-﻿using atFrameWork2.BaseFramework;
+﻿using AquaTestFramework.CommonFramework.BitrixCPinteraction;
+using atFrameWork2.BaseFramework;
 using atFrameWork2.PageObjects;
+using atFrameWork2.SeleniumFramework;
+using ATframework3demo.BaseFramework;
 using ATframework3demo.BaseFramework.BitrixCPinterraction;
 using ATframework3demo.PageObjects.SkillMap;
+using ATframework3demo.TestEntities;
+using OpenQA.Selenium;
 
 namespace ATframework3demo.TestCases.Skillmap
 {
@@ -10,17 +15,9 @@ namespace ATframework3demo.TestCases.Skillmap
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Создать 25 специалистов", homePage => query(homePage)));
             caseCollection.Add(new TestCase("Прокликать гриды (след, пред, выкл)", homePage => testGrid(homePage)));
             caseCollection.Add(new TestCase("Открыть 'аттестовать сотрудника'", homePage => testBurger(homePage)));
             return caseCollection;
-        }
-        void query(PortalHomePage homePage)
-        {
-            var testPortal = TestCase.RunningTestCase.TestPortal;
-            string query = File.ReadAllText(@"../../../TestEntities/queries/clear_db_and_create_25_specialists.sql");
-            homePage
-                .GoToSkillmap();
         }
 
         void testGrid(PortalHomePage homePage)

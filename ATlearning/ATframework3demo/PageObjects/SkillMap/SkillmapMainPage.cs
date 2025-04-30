@@ -26,20 +26,59 @@ namespace ATframework3demo.PageObjects.SkillMap
         public WebItem AddProfileBtn { get; } = new WebItem(
             "//a[contains(@class, 'create-specialist-button')]",
             "Зеленая кнопка '+Добавить'");
-        
+
+        public WebItem IPRBtn { get; } = new WebItem(
+            "//button[contains(@class, 'ipr-button')]",
+            "Выпадающий список 'ИПР'");
+        public WebItem AddIPRBtn { get; } = new WebItem(
+            "//a[@href='/skillmap/ipr-create/']",
+            "Кнопка 'Добавить ИПР'");
+        public WebItem ListIPRBtn { get; } = new WebItem(
+            "//a[@href='/skillmap/ipr-list/']",
+            "Кнопка 'Список всех ИПР'");
 
         public CreateSpecialistPage ClickOnAddProfileBtn()
         {
             AddProfileBtn.Click();
             return new CreateSpecialistPage();
         }
-        
+        public SkillmapMainPage ClickOnIPR()
+        {
+            IPRBtn.Click();
+            return new SkillmapMainPage();
+        }
+        public IPRstatPage ClickOnAddIPR()
+        {
+            AddIPRBtn.Click();
+            return new IPRstatPage();
+        }
+        public IPRlistPage ClickOnListIPR()
+        {
+            ListIPRBtn.Click();
+            return new IPRlistPage();
+        }
 
         /// <summary>
         /// Кликаем по бургеру напротив выбранного профиля
         /// </summary>
         /// <param name="profileName">Название профиля специалиста</param>
         /// <returns></returns>
-        public SkillmapMainPopup ClickOnBurger(string profileName) => new SkillmapMainPopup(profileName, Driver);     
+        public SkillmapMainPopup ClickOnBurger(string profileName) => new SkillmapMainPopup(profileName, Driver);
+
+        public bool IsProfileExists(string profileName)
+        {
+            var profile = new WebItem(
+                $"//span[@class='main-grid-cell-content' and contains(text(), '{profileName}')]",
+                $"Профиль с именем {profileName}");
+            try
+            {
+                profile.InnerText();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

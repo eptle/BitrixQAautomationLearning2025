@@ -52,10 +52,10 @@ namespace ATframework3demo.PageObjects.SkillMap
             return new SkillmapMainPage();
         }
 
-        public CreateSpecialistPage ClickOnCancelBtn()
+        public SkillmapMainPage ClickOnCancelBtn()
         {
             CancelBtn.Click();
-            return new CreateSpecialistPage();
+            return new SkillmapMainPage();
         }
 
         /// <summary>

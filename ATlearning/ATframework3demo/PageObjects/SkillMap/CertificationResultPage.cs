@@ -22,16 +22,16 @@ namespace ATframework3demo.PageObjects.SkillMap
 
         public WebItem UserSelectField { get; } = new WebItem(
             "//select[@id='userSelect']",
-            "кнопка 'Оценить' внизу формы");
+            "поле выбора сотрудника");
 
         public WebItem ProfileSelectField { get; } = new WebItem(
             "//select[@id='profileSelect']",
-            "кнопка 'Оценить' внизу формы");
+            "поле выбора профиля");
 
-        public CertificationResultPage ClickOnSertificateBtn()
+        public SkillmapMainPage ClickOnSertificateBtn()
         {
             CertificateBtn.Click();
-            return new CertificationResultPage();
+            return new SkillmapMainPage();
         }
 
         public CertificationResultPage SelectUser(string username)
