@@ -35,6 +35,7 @@ namespace ATframework3demo.TestCases.Skillmap
                 .FillSkillForm(1, skill1, grades)
                 .InputProfileName(profileName)
                 .ClickOnCreateProfileBtn()
+                .Toolbar
                 .ClickOnIPR()
                 .ClickOnAddIPR()
                 .CreateIPR(employeeName);
