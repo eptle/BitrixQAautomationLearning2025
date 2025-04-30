@@ -28,10 +28,10 @@ namespace ATframework3demo.PageObjects.SkillMap
             "//select[@id='profileSelect']",
             "поле выбора профиля");
 
-        public SkillmapMainPage ClickOnSertificateBtn()
+        public CertificationListPage ClickOnSertificateBtn()
         {
             CertificateBtn.Click();
-            return new SkillmapMainPage();
+            return new CertificationListPage();
         }
 
         public CertificationResultPage SelectUser(string username)
@@ -57,6 +57,11 @@ namespace ATframework3demo.PageObjects.SkillMap
             return new CertificationResultPage();
         }
 
+        /// <summary>
+        /// Вписывает оценки по профилю в инпуты по порядку
+        /// </summary>
+        /// <param name="grades">Оценки пользователя по порядку</param>
+        /// <returns></returns>
         public CertificationResultPage GradeUser(int[] grades)
         {
             for(int i = 1; i < grades.Length + 1; i++)
