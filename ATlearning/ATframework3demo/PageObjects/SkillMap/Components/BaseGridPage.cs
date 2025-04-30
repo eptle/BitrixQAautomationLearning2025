@@ -22,11 +22,27 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
 
         public int CurrentPage { get; set; } = 1;
 
-        public int NumOfPages { get; } = Convert.ToInt16(
-            new WebItem(
-                "//span[@class='main-grid-panel-content-text']", 
-                "Количество элементов в гриде")
-            .InnerText());
+        public int NumOfPages
+        {
+            get
+            {
+                try
+                {
+                    var text = new WebItem(
+                        "//span[@class='main-grid-panel-content-text']",
+                        "Количество элементов в гриде").InnerText();
+
+                    if (int.TryParse(text, out var pages))
+                        return pages;
+
+                    return 1; // Если не удалось распарсить — по умолчанию 1
+                }
+                catch
+                {
+                    return 1; // Если элемент отсутствует — по умолчанию 1
+                }
+            }
+        }
 
         /// <summary>
         /// Проверяет, включена ли пагинация или нет
