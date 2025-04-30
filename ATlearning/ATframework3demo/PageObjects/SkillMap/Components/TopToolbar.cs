@@ -2,6 +2,7 @@
 using atFrameWork2.SeleniumFramework;
 using ATframework3demo.PageObjects.SkillMap.Analytics;
 using ATframework3demo.PageObjects.SkillMap.Components.PopUps;
+using ATframework3demo.PageObjects.SkillMap.IPR;
 using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap.Components
@@ -26,6 +27,15 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
         public WebItem MyProgressBtn { get; } = new WebItem(
             "//a[contains(@class, 'my-progress-button')]",
             "Кнопка 'Мой прогресс'");
+        public WebItem IPRBtn { get; } = new WebItem(
+            "//button[contains(@class, 'ipr-button')]",
+            "Выпадающий список 'ИПР'");
+        public WebItem AddIPRBtn { get; } = new WebItem(
+            "//a[@href='/skillmap/ipr-create/']",
+            "Кнопка 'Добавить ИПР'");
+        public WebItem ListIPRBtn { get; } = new WebItem(
+            "//a[@href='/skillmap/ipr-list/']",
+            "Кнопка 'Список всех ИПР'");
 
         public SkillmapMainPage ClickOnSpecialistProfilesBtn()
         {
@@ -37,6 +47,22 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
         {
             MyProgressBtn.Click();
             return new MyProgressPage();
+        }
+
+        public SkillmapMainPage ClickOnIPR()
+        {
+            IPRBtn.Click();
+            return new SkillmapMainPage();
+        }
+        public IPRstatPage ClickOnAddIPR()
+        {
+            AddIPRBtn.Click();
+            return new IPRstatPage();
+        }
+        public IPRlistPage ClickOnListIPR()
+        {
+            ListIPRBtn.Click();
+            return new IPRlistPage();
         }
 
         /// <summary>
