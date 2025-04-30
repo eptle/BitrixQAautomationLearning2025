@@ -51,16 +51,19 @@ namespace ATframework3demo.PageObjects.SkillMap.IPR
                 "Клик на сотрудника");
         }
 
+        public WebItem Deadline { get; } = new WebItem(
+            "//input[@id='deadline']",
+            "Дедлайн ипр");
+
         public IPRlistPage CreateIPR(string employeeName, string profileName)
         {
             ChooseEmployeeBtn.Click();
             GetEmployeeBtn(employeeName).Click();
             GetProfileBtn(profileName).Click();
             DescriptionSpecialistBtn.SendKeys("description of IPR");
-            DeadlineOfIPRBtn.SendKeys("2026-01-05T13:15");
+            Deadline.SetArributeValue("value", "2025-12-31T23:59");
             CreateIPRBtn.Click();
             return new IPRlistPage();
         }
-
     }
 }
