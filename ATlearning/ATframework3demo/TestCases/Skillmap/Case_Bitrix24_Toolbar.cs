@@ -27,7 +27,7 @@ namespace ATframework3demo.TestCases
         {
 
             homePage
-                .GoToSkillmap() // перейти во вкладу skillmap по uri
+                .GoToSkillmap()                // перейти во вкладу skillmap по uri
                 .ClickOnAddProfileBtn();       // кликнуть на кнопку добавить 
         }
 
@@ -74,6 +74,9 @@ namespace ATframework3demo.TestCases
                 .Toolbar
                 .ClickOnAnalyticsBtn()
                 .StatByProfiles()
+                .Toolbar
+                .ClickOnAnalyticsBtn()
+                .UsersList()
                 .Toolbar
                 .ClickOnSpecialistProfilesBtn();
 
