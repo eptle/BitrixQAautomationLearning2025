@@ -187,5 +187,24 @@ namespace atFrameWork2.SeleniumFramework
 
             Waiters.StaticWait_s(DefaultWaitAfterActiveAction_s);
         }
+
+        /// <summary>
+        /// Задать атрибуту значение
+        /// </summary>
+        /// <param name="attribute">название атрибута</param>
+        /// <param name="value">передаваемое значение атрибута</param>
+        /// <exception cref="NotImplementedException"></exception>
+        public void SetArributeValue(string attribute, string value, IWebDriver driver = default)
+        {
+            PrintActionInfo($"Установка атрибута '{attribute}' со значением '{value}'");
+
+            Execute((element, drv) =>
+            {
+                var jsExecutor = (IJavaScriptExecutor)drv;
+                jsExecutor.ExecuteScript("arguments[0].setAttribute(arguments[1], arguments[2]);", element, attribute, value);
+            }, driver);
+
+            Waiters.StaticWait_s(DefaultWaitAfterActiveAction_s);
+        }
     }
 }
