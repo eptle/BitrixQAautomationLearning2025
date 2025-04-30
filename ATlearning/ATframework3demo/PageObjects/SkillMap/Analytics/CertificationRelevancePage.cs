@@ -1,5 +1,6 @@
 ﻿using atFrameWork2.SeleniumFramework;
 using ATframework3demo.PageObjects.SkillMap.Components;
+using ATframework3demo.PageObjects.SkillMap.Components.PopUps;
 using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap.Analytics
@@ -24,6 +25,13 @@ namespace ATframework3demo.PageObjects.SkillMap.Analytics
 
             burger.Click();
             throw new NoSuchElementException();
-            }
         }
+
+        /// <summary>
+        /// Кликаем по бургеру напротив выбранного пользователя
+        /// </summary>
+        /// <param name="username">Имя пользователя</param>
+        /// <returns></returns>
+        public CertificationRelevancePopup ClickOnBurger(string username) => new CertificationRelevancePopup(username, Driver);
+    }
 }
