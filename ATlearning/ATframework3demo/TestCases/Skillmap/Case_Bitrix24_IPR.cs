@@ -38,7 +38,7 @@ namespace ATframework3demo.TestCases.Skillmap
                 .Toolbar
                 .ClickOnIPR()
                 .ClickOnAddIPR()
-                .CreateIPR(employeeName);
+                .CreateIPR(employeeName, profileName);
         }
         void TaskIPR(PortalHomePage homePage)
         {

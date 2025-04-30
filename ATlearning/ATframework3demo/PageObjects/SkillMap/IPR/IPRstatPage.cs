@@ -20,15 +20,47 @@ namespace ATframework3demo.PageObjects.SkillMap.IPR
         public WebItem ChooseEmployeeBtn { get; } = new WebItem(
             "//select[@name='employee_id']",
             "Выпадающий список выбора сотруднкиа для создания ИПР");
-        /*public WebItem EmployeeBtn { get; } = new WebItem(
-            "//option[contains(text(), {employeeName})]",
-            "Выпадающий список выбора сотруднкиа для создания ИПР");*/
 
-        public IPRlistPage CreateIPR(string employeeName)
+        public WebItem ChooseSpecialistBtn { get; } = new WebItem(
+            "//select[@name='specialist_id']",
+            "Выпадающий список выбора профиля специалиста для создания ИПР");
+
+        public WebItem DescriptionSpecialistBtn { get; } = new WebItem(
+            "//textarea[@id='description']",
+            "Описание ИПР");
+
+        public WebItem DeadlineOfIPRBtn { get; } = new WebItem(
+            "//input[@id='deadline']",
+            "Дедлайн ИПР");
+
+        public WebItem CreateIPRBtn { get; } = new WebItem(
+            "//button[@name='create_ipr']",
+            "Зеленая кнопка 'Cоздать'");
+
+        public WebItem GetProfileBtn(string profileName)
+        {
+            return new WebItem(
+            $"//option[contains(text(), '{profileName}')]",
+                "Клик на профиль специалиста");
+        }
+
+        public WebItem GetEmployeeBtn(string employeeName)
+        {
+            return new WebItem(
+                $"//option[contains(text(), '{employeeName}')]",
+                "Клик на сотрудника");
+        }
+
+        public IPRlistPage CreateIPR(string employeeName, string profileName)
         {
             ChooseEmployeeBtn.Click();
-            //EmployeeBtn.Click();
+            GetEmployeeBtn(employeeName).Click();
+            GetProfileBtn(profileName).Click();
+            DescriptionSpecialistBtn.SendKeys("description of IPR");
+            DeadlineOfIPRBtn.SendKeys("05.05.2025");
+            CreateIPRBtn.Click();
             return new IPRlistPage();
         }
+
     }
 }
