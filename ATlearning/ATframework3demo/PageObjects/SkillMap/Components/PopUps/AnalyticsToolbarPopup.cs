@@ -54,5 +54,16 @@ namespace ATframework3demo.PageObjects.SkillMap.Components.PopUps
 
             return new StatByProfilesPage();
         }
+
+        public UsersListPage UsersList()
+        {
+            var SeeCertificationsBtn = new WebItem(
+                "//div[@class='menu-popup-items']//a[contains(@href, 'users-list')]",
+                "Кнопка 'статистика по профилям (грид)'");
+
+            SeeCertificationsBtn.Click();
+
+            return new UsersListPage();
+        }
     }
 }
