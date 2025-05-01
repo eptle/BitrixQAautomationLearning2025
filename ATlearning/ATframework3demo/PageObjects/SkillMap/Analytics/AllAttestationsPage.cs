@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap.Analytics
 {
-    public class AllAttestationsPage
+    public class AllAttestationsPage : BaseGridPage
     {
         public IWebDriver Driver { get; }
 
