@@ -35,11 +35,11 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
                     if (int.TryParse(text, out var pages))
                         return pages;
 
-                    return 1; // Если не удалось распарсить — по умолчанию 1
+                    return 1;
                 }
                 catch
                 {
-                    return 1; // Если элемент отсутствует — по умолчанию 1
+                    return 1;
                 }
             }
         }
@@ -95,6 +95,62 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
         public void GoToPageByNum(int num)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Сортирует данные в гриде по заданному параметру
+        /// </summary>
+        /// <param name="dbField">значение аргумента data-name в теге th</param>
+        public void SortBy(string dbField)
+        {
+            var tableHeader = new WebItem(
+                $"//th[@data-name='{dbField}']",
+                $"Заголовок колонки {dbField}");
+
+            tableHeader.Click();
+        }
+
+        // можно еще сделать чтобы она пробегалась по страницам (???)
+        /// <summary>
+        /// Проверяет наличие записи с переданными данными в таблице
+        /// </summary>
+        /// <param name="record">Список значений в строке таблицы</param>
+        /// <returns></returns>
+        public bool IsDataCorrect(List<string> record)
+        {
+            var gridRows = new WebItem(
+                "//tr[@class='main-grid-row main-grid-row-body']",
+                "Записи в гриде");
+
+            var gridCols = new WebItem(
+                    $"//thead[@class='main-grid-header']//th[@class='main-grid-cell-head main-grid-cell-left main-grid-col-sortable main-grid-draggable ']",
+                    "Колонки");
+
+            int numOfRows = gridRows.XPathLocators.Count();
+            int numOfCols = gridCols.XPathLocators.Count();
+
+            for (int i = 1;  i <= numOfRows; i++)
+            {
+                string xpath = $"(//tr[@class='main-grid-row main-grid-row-body'])[{i}]";
+                bool flag = true;
+                
+                for (int j = 1; j <= numOfCols; j++)
+                {
+                    var cell = new WebItem(
+                    $"({xpath}/td[@class='main-grid-cell main-grid-cell-left'])[{j}]//span",
+                    "Запись в ячейке");
+                    if (cell.InnerText() == record[j])
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+
+                if (flag)
+                    return true;
+            }
+
+            return false;
         }
     }
 }
