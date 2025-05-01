@@ -91,7 +91,7 @@ namespace ATframework3demo.TestCases.Skillmap.SmokeTest
 
             var ProfilePage = homePage
                 .GoToSkillmap();
-
+            
             // создаем два профиля специалиста
             foreach (string profile in new string[] {profileName1, profileName2})
             {
@@ -118,7 +118,19 @@ namespace ATframework3demo.TestCases.Skillmap.SmokeTest
                         .ClickOnSpecialistProfilesBtn();
                 }
             }
-
+            
+            var AllCertification = ProfilePage
+                 .Toolbar
+                 .ClickOnAnalyticsBtn()
+                 .AllAttestations()
+                 .IsDataCorrect(new List<string> { 
+                     "1", 
+                     "30 апреля, 15:27", 
+                     "test1 test1", 
+                     "Дмитрий Бут", 
+                     "profile_1_30042025152651", 
+                     "Skill_1_ 30042025152651: 20 (Middle)", 
+                     "Middle (100%)" });
 
         }
     }
