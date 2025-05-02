@@ -9,8 +9,6 @@ namespace atFrameWork2.SeleniumFramework
 {
     public class WebItem : BaseItem
     {
-        public List<string> XPathLocators { get; private set; }
-
         public WebItem(string xpathLocator, string description) : this(new List<string> {xpathLocator}, description)
         {
         }
