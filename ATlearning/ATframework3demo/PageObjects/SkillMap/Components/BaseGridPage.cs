@@ -143,7 +143,6 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
                         string innerText = cell.InnerText();
                         if (!innerText.Contains(record[j - 1]))
                         {
-                            Log.Info($"Значение '{record[j - 1]}' НЕ содержится в '{innerText}'");
                             isMatch = false;
                             break;
                         }
