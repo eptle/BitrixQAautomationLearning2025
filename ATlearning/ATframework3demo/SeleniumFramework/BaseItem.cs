@@ -180,5 +180,26 @@ namespace atFrameWork2.SeleniumFramework
         {
             Log.Info($"{actionTitle}: " + DescriptionFull);
         }
+
+        /// <summary>
+        /// Считает количество найденных элементов по xpath
+        /// </summary>
+        public int Count(IWebDriver driver = default)
+        {
+            driver ??= DefaultDriver;
+            int totalCount = 0;
+
+            Execute((element, drv) =>
+            {
+                foreach (var xpath in XPathLocators)
+                {
+                    var elements = drv.FindElements(By.XPath(xpath));
+                    totalCount += elements.Count;
+                }
+            }, driver);
+
+            Log.Info($"Найдено {totalCount} элементов по локаторам: {string.Join(", ", XPathLocators)}");
+            return totalCount;
+        }
     }
 }
