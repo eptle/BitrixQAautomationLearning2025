@@ -2,6 +2,7 @@
 using ATframework3demo.PageObjects.SkillMap.Components;
 using atFrameWork2.SeleniumFramework;
 using atFrameWork2.BaseFramework;
+using atFrameWork2.BaseFramework.LogTools;
 
 namespace ATframework3demo.PageObjects.SkillMap.Components
 {
@@ -71,8 +72,8 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
             var nextBtn = new WebItem(
                 "//a[@class='main-ui-pagination-arrow main-ui-pagination-next']",
                 "Кнопка 'следующая' снизу грида");
-            Waiters.StaticWait_s(3);
             nextBtn.Click();
+            Waiters.StaticWait_s(3);
             CurrentPage++;
         }
 
@@ -84,8 +85,8 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
             var prevBtn = new WebItem(
                 "//a[@class='main-ui-pagination-arrow main-ui-pagination-prev']",
                 "Кнопка 'предыдущая' снизу грида");
-            Waiters.StaticWait_s(3);
             prevBtn.Click();
+            Waiters.StaticWait_s(3);
             CurrentPage--;
         }
 
@@ -98,7 +99,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
         }
 
         /// <summary>
-        /// Сортирует данные в гриде по заданному параметру
+        /// Сортирует данные в гриде по заданному параметру (значение аттрибута data-name)
         /// </summary>
         /// <param name="dbField">значение аргумента data-name в теге th</param>
         public void SortBy(string dbField)
@@ -108,46 +109,58 @@ namespace ATframework3demo.PageObjects.SkillMap.Components
                 $"Заголовок колонки {dbField}");
 
             tableHeader.Click();
+            Waiters.StaticWait_s(3);
         }
 
-        // можно еще сделать чтобы она пробегалась по страницам (???)
         /// <summary>
-        /// Проверяет наличие записи с переданными данными в таблице
+        /// Проверяет наличие записи с переданными данными в таблице. 
+        /// Колонки, не требующие проверки, записать пустой строкой.
         /// </summary>
         /// <param name="record">Список значений в строке таблицы</param>
         /// <returns></returns>
         public bool IsDataCorrect(List<string> record)
         {
-            var gridRows = new WebItem(
+            int numOfCols = record.Count();
+
+            for (int page = 1; page <= NumOfPages; page++)
+            {
+                var gridRows = new WebItem(
                 "//tr[@class='main-grid-row main-grid-row-body']",
                 "Записи в гриде");
 
-            var gridCols = new WebItem(
-                    $"//thead[@class='main-grid-header']//th[@class='main-grid-cell-head main-grid-cell-left main-grid-col-sortable main-grid-draggable ']",
-                    "Колонки");
+                int numOfRows = gridRows.Count();
 
-            int numOfRows = gridRows.XPathLocators.Count();
-            int numOfCols = gridCols.XPathLocators.Count();
-
-            for (int i = 1;  i <= numOfRows; i++)
-            {
-                string xpath = $"(//tr[@class='main-grid-row main-grid-row-body'])[{i}]";
-                bool flag = true;
-                
-                for (int j = 1; j <= numOfCols; j++)
+                for (int i = 1; i <= numOfRows; i++)
                 {
-                    var cell = new WebItem(
-                    $"({xpath}/td[@class='main-grid-cell main-grid-cell-left'])[{j}]//span",
-                    "Запись в ячейке");
-                    if (cell.InnerText() == record[j])
+                    string xpath = $"(//tr[@class='main-grid-row main-grid-row-body'])[{i}]";
+                    bool isMatch = true;
+
+                    for (int j = 1; j <= numOfCols; j++)
                     {
-                        flag = false;
-                        break;
+                        var cell = new WebItem(
+                        $"({xpath}/td[@class='main-grid-cell main-grid-cell-left'])[{j}]//span",
+                        "Запись в ячейке");
+                        string innerText = cell.InnerText();
+                        if (!innerText.Contains(record[j - 1]))
+                        {
+                            Log.Info($"Значение '{record[j - 1]}' НЕ содержится в '{innerText}'");
+                            isMatch = false;
+                            break;
+                        }
                     }
+
+                    if (isMatch)
+                        return true;
                 }
 
-                if (flag)
-                    return true;
+                try
+                {
+                    NextPage();
+                }
+                catch (NoSuchElementException)
+                {
+                    return false;
+                }
             }
 
             return false;
