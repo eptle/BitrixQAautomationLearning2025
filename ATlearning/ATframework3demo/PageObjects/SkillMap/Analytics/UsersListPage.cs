@@ -1,4 +1,5 @@
 ﻿using ATframework3demo.PageObjects.SkillMap.Components;
+using ATframework3demo.PageObjects.SkillMap.Components.PopUps;
 using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap.Analytics
@@ -14,5 +15,7 @@ namespace ATframework3demo.PageObjects.SkillMap.Analytics
             Driver = driver;
             Toolbar = new TopToolbar(driver);
         }
+
+        public UsersListPopup ClickOnBurger(string username) => new UsersListPopup(username, Driver);
     }
 }
