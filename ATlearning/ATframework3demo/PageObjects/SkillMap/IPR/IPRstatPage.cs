@@ -55,13 +55,25 @@ namespace ATframework3demo.PageObjects.SkillMap.IPR
             "//input[@id='deadline']",
             "Дедлайн ипр");
 
-        public IPRlistPage CreateIPR(string employeeName, string profileName)
+        public IPRstatPage InputProfilAndEmployee(string employeeName, string profileName)
         {
             ChooseEmployeeBtn.Click();
             GetEmployeeBtn(employeeName).Click();
             GetProfileBtn(profileName).Click();
+            return new IPRstatPage();
+        }
+        public IPRstatPage FillDescription()
+        {
             DescriptionSpecialistBtn.SendKeys("description of IPR");
+            return new IPRstatPage();
+        }
+        public IPRstatPage FillDeadline()
+        {
             Deadline.SetArributeValue("value", "2025-12-31T23:59");
+            return new IPRstatPage();
+        }
+        public IPRlistPage CreateIPR()
+        {
             CreateIPRBtn.Click();
             return new IPRlistPage();
         }
