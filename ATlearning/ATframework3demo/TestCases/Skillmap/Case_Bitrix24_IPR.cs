@@ -22,12 +22,6 @@ namespace ATframework3demo.TestCases.Skillmap
             string employeeName = "test1";
             string skill1 = "Skill_1_ " + date;
             int[] grades = { 10, 20, 30 };
-            /*
-            homePage
-                .GoToEmployee()
-                .InviteEmployee()
-                .AddEmployee(employeeName);
-            */
 
             var IPRPage = homePage
                 .GoToSkillmap()
@@ -38,7 +32,10 @@ namespace ATframework3demo.TestCases.Skillmap
                 .Toolbar
                 .ClickOnIPR()
                 .ClickOnAddIPR()
-                .CreateIPR(employeeName, profileName);
+                .InputProfilAndEmployee(employeeName, profileName)
+                .FillDescription()
+                .FillDeadline()
+                .CreateIPR();
         }
         void TaskIPR(PortalHomePage homePage)
         {
