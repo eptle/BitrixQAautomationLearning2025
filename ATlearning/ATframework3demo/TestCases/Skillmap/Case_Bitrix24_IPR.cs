@@ -1,4 +1,5 @@
 ﻿using atFrameWork2.BaseFramework;
+using atFrameWork2.BaseFramework.LogTools;
 using atFrameWork2.PageObjects;
 using ATframework3demo.BaseFramework;
 
@@ -18,24 +19,34 @@ namespace ATframework3demo.TestCases.Skillmap
         void CreateIPR(PortalHomePage homePage)
         {
             string date = HelperMethods.GetDateTimeSaltString();
-            string profileName = "profile_1_" + date;
+            string profileName = "Data Scientist " + date;
             string employeeName = "test1";
             string skill1 = "Skill_1_ " + date;
+            string skill2 = "Skill_2_ " + date;
             int[] grades = { 10, 20, 30 };
 
-            var IPRPage = homePage
+            var taksPage = homePage
                 .GoToSkillmap()
                 .ClickOnAddProfileBtn()
-                .FillSkillForm(1, skill1, grades)
                 .InputProfileName(profileName)
+                .FillSkillForm(1, skill1, grades)
+                .ClickOnAddSkillBtn()
+                .FillSkillForm(2, skill2, grades)
                 .ClickOnCreateProfileBtn()
                 .Toolbar
                 .ClickOnIPR()
                 .ClickOnAddIPR()
                 .InputProfilAndEmployee(employeeName, profileName)
-                .FillDescription()
+                .FillDescription("Важно укрепить навыки продвинутого анализа данных, моделирования, оптимизации ML-процессов и развивать компетенции в бизнес-коммуникации и решении прикладных задач.")
                 .FillDeadline()
-                .CreateIPR();
+                .CreateIPR()
+                .LeftMenu
+                .OpenTasks();
+
+            if (!taksPage.IsIPRtaskExists(profileName))
+            {
+                Log.Error($"Ипр по профилю '{profileName}' не найден");
+            }
         }
         void TaskIPR(PortalHomePage homePage)
         {

@@ -42,5 +42,22 @@ namespace atFrameWork2.PageObjects
             flowsBtn.Click();
             return new FlowsPage();
         }
+
+        /// <summary>
+        /// Проверяет, существует ли ИПР по заданному профилю в списке задач
+        /// </summary>
+        /// <param name="profileName">название профиля</param>
+        /// <returns></returns>
+        public bool IsIPRtaskExists(string profileName)
+        {
+            var taskTitle = new WebItem(
+                $"//a[@class='task-title task-status-text-color-in-progress' and text()='ИПР по профилю: {profileName}']",
+                "Заголовок задачи в списке");
+
+            if (taskTitle.Count() == 0)
+                return false;
+
+            return true;
+        }
     }
 }

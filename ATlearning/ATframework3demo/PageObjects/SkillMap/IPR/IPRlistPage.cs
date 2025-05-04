@@ -1,4 +1,5 @@
-﻿using ATframework3demo.PageObjects.SkillMap.Components;
+﻿using atFrameWork2.PageObjects;
+using ATframework3demo.PageObjects.SkillMap.Components;
 using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap.IPR
@@ -14,5 +15,7 @@ namespace ATframework3demo.PageObjects.SkillMap.IPR
             Driver = driver;
             Toolbar = new TopToolbar(driver);
         }
+
+        public PortalLeftMenu LeftMenu => new PortalLeftMenu(Driver);
     }
 }

@@ -62,9 +62,9 @@ namespace ATframework3demo.PageObjects.SkillMap.IPR
             GetProfileBtn(profileName).Click();
             return new IPRstatPage();
         }
-        public IPRstatPage FillDescription()
+        public IPRstatPage FillDescription(string text)
         {
-            DescriptionSpecialistBtn.SendKeys("description of IPR");
+            DescriptionSpecialistBtn.SendKeys(text);
             return new IPRstatPage();
         }
         public IPRstatPage FillDeadline()
