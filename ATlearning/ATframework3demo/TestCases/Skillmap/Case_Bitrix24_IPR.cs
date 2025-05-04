@@ -85,12 +85,44 @@ namespace ATframework3demo.TestCases.Skillmap
 
             if (!statIPR.IsIPRstat(profileName))
             {
-                Log.Error($"Статус ИПР некорректный");
+                Log.Error("Статус ИПР некорректный");
             }
         }
+
         void ListIPRview(PortalHomePage homePage)
         {
+            string date = HelperMethods.GetDateTimeSaltString();
+            string[] profileNames = { "Data Scientist " + date, "PHP Developer " + date };
+            string[] employeeNames = { "test1", "test2" };
+            string[] skills = { "Skill_1_" + date, "Skill_2_" + date };
+            int[] grades = { 10, 20, 30 };
 
+            for (int i = 0; i < employeeNames.Length; i++)
+            {
+                string profileName = profileNames[i];
+                string employeeName = employeeNames[i];
+
+                var allIPRPage = homePage
+                        .GoToSkillmap()
+                        .ClickOnAddProfileBtn()
+                        .InputProfileName(profileName)
+                        .FillSkillForm(1, skills[0], grades)
+                        .ClickOnAddSkillBtn()
+                        .FillSkillForm(2, skills[1], grades)
+                        .ClickOnCreateProfileBtn()
+                        .Toolbar
+                        .ClickOnIPR()
+                        .ClickOnAddIPR()
+                        .InputProfilAndEmployee(employeeName, profileName)
+                        .FillDescription($"Описание для {profileName} (сотрудник: {employeeName})")
+                        .FillDeadline()
+                        .CreateIPR();
+
+                if (!allIPRPage.IsIPRlistExists(profileName))
+                {
+                    Log.Error($"Ипр по профилю '{profileName}' не найден");
+                }
+            }
         }
     }
 }
