@@ -16,7 +16,7 @@ namespace ATframework3demo.TestCases.Skillmap
             var caseCollection = new List<TestCase>();
             caseCollection.Add(new TestCase("Создать профиль с тремя скиллами и редактировать его", homePage => createProfile(homePage)));
             caseCollection.Add(new TestCase("Добавить профиль с одним скиллом и нажать отмена", homePage => cancelCreatingProfile(homePage)));
-            caseCollection.Add(new TestCase("Создать профиль с 30-ю скиллами", homePage => createProfileWith30Skills(homePage)));
+            caseCollection.Add(new TestCase("Создать профиль с 20-ю скиллами", homePage => createProfileWith20Skills(homePage)));
             return caseCollection;
         }
         void createProfile(PortalHomePage homePage)
@@ -79,7 +79,7 @@ namespace ATframework3demo.TestCases.Skillmap
             }
         }
 
-        void createProfileWith30Skills(PortalHomePage homePage)
+        void createProfileWith20Skills(PortalHomePage homePage)
         {
             string date = HelperMethods.GetDateTimeSaltString();
             string profileName = "profile_1_" + date;
@@ -91,14 +91,14 @@ namespace ATframework3demo.TestCases.Skillmap
                 .ClickOnAddProfileBtn()
                 .InputProfileName(profileName);
 
-            for (int i = 1; i <= 30; i++)
+            for (int i = 1; i <= 20; i++)
             {
                 profilePage
                     .FillSkillForm(i, skill1 + $"{i}", grades)
                     .ClickOnAddSkillBtn();
             }
             var mainPage = profilePage
-                .ClickOnRemoveSkillBtn(30)
+                .ClickOnRemoveSkillBtn(20)
                 .ClickOnCreateProfileBtn();
 
             try

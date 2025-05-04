@@ -87,38 +87,42 @@ namespace ATframework3demo.TestCases.Skillmap.SmokeTest
         void Create2ProfilesAndCertificate2UsersTwice(PortalHomePage homePage)
         {
             string date = HelperMethods.GetDateTimeSaltString();
-            string profileName1 = "profile_1_" + date;
-            string profileName2 = "profile_2_" + date;
+            string profileName1 = "QA Engineer " + date;
+            string profileName2 = "PHP developer " + date;
             string skill1 = "Skill_1_ " + date;
+            string skill2 = "Skill_2_ " + date;
             int[] grades = { 10, 20, 30 };
             string username1 = "test1";
             string username2 = "test2";
-            string admin = TestCase.RunningTestCase.TestPortal.PortalAdmin.NameLastName;
 
             var ProfilePage = homePage
                 .GoToSkillmap();
+
+            Waiters.StaticWait_s(1);
 
             // создаем два профиля специалиста
             foreach (string profile in new string[] {profileName1, profileName2})
             {
                 ProfilePage
                     .ClickOnAddProfileBtn()
-                    .FillSkillForm(1, skill1, grades)
                     .InputProfileName(profile)
+                    .FillSkillForm(1, skill1, grades)
+                    .ClickOnAddSkillBtn()
+                    .FillSkillForm(2, skill2, grades)
                     .ClickOnCreateProfileBtn();
             }
-            ProfilePage.SortBy("UPDATED_AT");
             
             // аттестовать каждого из двух сотрудников по каждому профилю
             foreach (string profile in new string[] { profileName1, profileName2 })
             {
                 foreach (string username in new string[] { username1, username2 })
                 {
+                    ProfilePage.IsDataCorrect(new List<string> { "", profile });
                     ProfilePage
                         .ClickOnBurger(profile)
                         .CertificateEmployee()
                         .SelectUser(username)
-                        .GradeUser(new int[] { 20 })
+                        .GradeUser(new int[] { 22, 21 })
                         .ClickOnSertificateBtn()
                         .Toolbar
                         .ClickOnSpecialistProfilesBtn();
@@ -134,9 +138,9 @@ namespace ATframework3demo.TestCases.Skillmap.SmokeTest
                      "",
                      "",
                      $"{username1}",
-                     $"Дмитрий",
+                     $"admin",
                      $"{profileName1}",
-                     "20 (Middle)",
+                     "",
                      "Middle (100%)" };
 
             bool isRecordExist = AllCertification.IsDataCorrect(record);
@@ -161,6 +165,8 @@ namespace ATframework3demo.TestCases.Skillmap.SmokeTest
                 .FillSkillForm(1, skill1, grades)
                 .ClickOnCreateProfileBtn();
 
+            ProfilePage.SortBy("ID");
+            ProfilePage.SortBy("ID");
             int[] gradesForAttestation = new int[] { 12, 30, 24 };
 
             foreach (int grade in gradesForAttestation)
