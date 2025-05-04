@@ -35,5 +35,21 @@ namespace ATframework3demo.PageObjects.SkillMap.IPR
 
             return true;
         }
+
+        /// <summary>
+        /// Проверяет, сущестует ли ИПР в спсике всех ИПР
+        /// </summary>
+        public bool IsIPRlistExists(string profileName)
+        {
+            var taskTitle = new WebItem(
+                $"//tr[contains(@class, 'main-grid-row')]" +
+                $"[.//span[contains(text(), '{profileName}')]]",
+                $"ИПР по профилю '{profileName}'");
+
+            if (taskTitle.Count() == 0)
+                return false;
+
+            return true;
+        }
     }
 }
