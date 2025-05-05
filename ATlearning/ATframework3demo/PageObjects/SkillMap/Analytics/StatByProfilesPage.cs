@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap.Analytics
 {
-    public class StatByProfilesPage
+    public class StatByProfilesPage : BaseGridPage
     {
         public IWebDriver Driver { get; }
 
