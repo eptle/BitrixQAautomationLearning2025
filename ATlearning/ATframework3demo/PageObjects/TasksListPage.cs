@@ -95,10 +95,7 @@ namespace atFrameWork2.PageObjects
                 $"//a[@class='task-title task-status-text-color-in-progress' and text()='ИПР по профилю: {profileName}']",
                 "Заголовок задачи в списке");
 
-            if (taskTitle.Count() == 0)
-                return false;
-
-            return true;
+            return taskTitle.Count() > 0;
         }
     }
 }

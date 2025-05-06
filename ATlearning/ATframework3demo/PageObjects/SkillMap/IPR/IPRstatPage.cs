@@ -67,9 +67,9 @@ namespace ATframework3demo.PageObjects.SkillMap.IPR
             DescriptionSpecialistBtn.SendKeys(text);
             return new IPRstatPage();
         }
-        public IPRstatPage FillDeadline()
+        public IPRstatPage FillDeadline(string deadline)
         {
-            Deadline.SetArributeValue("value", "2025-12-31T23:59");
+            Deadline.SetArributeValue("value", deadline);
             return new IPRstatPage();
         }
         public IPRlistPage CreateIPR()

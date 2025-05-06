@@ -12,7 +12,7 @@ namespace ATframework3demo.TestCases.Skillmap
             var caseCollection = new List<TestCase>();
             caseCollection.Add(new TestCase("Формирование ИПР для сотрудника и проверка отображения в задачах", homePage => CreateIPR(homePage)));
             caseCollection.Add(new TestCase("Взаимодействие с ИПР через задачу и проверка статуса его выполнения", homePage => StatusIPR(homePage)));
-            caseCollection.Add(new TestCase("Формирование 2х ИПР и их просмотр в списке ИПР", homePage => ListIPRview(homePage)));
+            caseCollection.Add(new TestCase("Формирование двух ИПР и их просмотр в списке ИПР", homePage => ListIPRview(homePage)));
             return caseCollection;
         }
         void CreateIPR(PortalHomePage homePage)
@@ -22,10 +22,12 @@ namespace ATframework3demo.TestCases.Skillmap
             string employeeName = "test1";
             string skill1 = "Skill_1_ " + date;
             string skill2 = "Skill_2_ " + date;
+            string deadline = "2025-12-31T23:59";
             int[] grades = { 10, 20, 30 };
 
             var taksPage = homePage
                 .GoToSkillmap()
+                //создаем профиль специалиста
                 .ClickOnAddProfileBtn()
                 .InputProfileName(profileName)
                 .FillSkillForm(1, skill1, grades)
@@ -34,10 +36,11 @@ namespace ATframework3demo.TestCases.Skillmap
                 .ClickOnCreateProfileBtn()
                 .Toolbar
                 .ClickOnIPR()
+                //создаем ИПР
                 .ClickOnAddIPR()
                 .InputProfilAndEmployee(employeeName, profileName)
                 .FillDescription("Важно укрепить навыки продвинутого анализа данных, моделирования, оптимизации ML-процессов и развивать компетенции в бизнес-коммуникации и решении прикладных задач.")
-                .FillDeadline()
+                .FillDeadline(deadline)
                 .CreateIPR()
                 .LeftMenu
                 .OpenTasks();
@@ -54,10 +57,12 @@ namespace ATframework3demo.TestCases.Skillmap
             string employeeName = "test1";
             string skill1 = "Skill_1_ " + date;
             string skill2 = "Skill_2_ " + date;
+            string deadline = "2025-12-31T23:59";
             int[] grades = { 10, 20, 30 };
 
             homePage
                 .GoToSkillmap()
+                //создаем профиль специалиста
                 .ClickOnAddProfileBtn()
                 .InputProfileName(profileName)
                 .FillSkillForm(1, skill1, grades)
@@ -66,12 +71,14 @@ namespace ATframework3demo.TestCases.Skillmap
                 .ClickOnCreateProfileBtn()
                 .Toolbar
                 .ClickOnIPR()
+                //создаем ИПР
                 .ClickOnAddIPR()
                 .InputProfilAndEmployee(employeeName, profileName)
                 .FillDescription("Важно укрепить навыки продвинутого анализа данных, моделирования, оптимизации ML-процессов и развивать компетенции в бизнес-коммуникации и решении прикладных задач.")
-                .FillDeadline()
+                .FillDeadline(deadline)
                 .CreateIPR()
                 .LeftMenu
+                //открываем ИПР через задачи и начинаем его
                 .OpenTasks()
                 .OpenIPR(profileName)
                 .BeginIPR()
@@ -95,6 +102,7 @@ namespace ATframework3demo.TestCases.Skillmap
             string[] profileNames = { "Data Scientist " + date, "PHP Developer " + date };
             string[] employeeNames = { "test1", "test2" };
             string[] skills = { "Skill_1_" + date, "Skill_2_" + date };
+            string deadline = "2025-12-31T23:59";
             int[] grades = { 10, 20, 30 };
 
             for (int i = 0; i < employeeNames.Length; i++)
@@ -115,7 +123,7 @@ namespace ATframework3demo.TestCases.Skillmap
                         .ClickOnAddIPR()
                         .InputProfilAndEmployee(employeeName, profileName)
                         .FillDescription($"Описание для {profileName} (сотрудник: {employeeName})")
-                        .FillDeadline()
+                        .FillDeadline(deadline)
                         .CreateIPR();
 
                 if (!allIPRPage.IsIPRlistExists(profileName))

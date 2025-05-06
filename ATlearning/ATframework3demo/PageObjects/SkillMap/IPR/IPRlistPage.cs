@@ -30,10 +30,7 @@ namespace ATframework3demo.PageObjects.SkillMap.IPR
                "and .//span[text()='Выполняется']]",
                 "Статус ИПР");
 
-            if (taskTitle.Count() == 0)
-                return false;
-
-            return true;
+            return taskTitle.Count() > 0;
         }
 
         /// <summary>
@@ -46,10 +43,7 @@ namespace ATframework3demo.PageObjects.SkillMap.IPR
                 $"[.//span[contains(text(), '{profileName}')]]",
                 $"ИПР по профилю '{profileName}'");
 
-            if (taskTitle.Count() == 0)
-                return false;
-
-            return true;
+            return taskTitle.Count() > 0;
         }
     }
 }
