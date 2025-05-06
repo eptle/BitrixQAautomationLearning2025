@@ -15,6 +15,8 @@ namespace atFrameWork2.PageObjects
 
         public IWebDriver Driver { get; }
 
+        public PortalLeftMenu LeftMenu => new PortalLeftMenu(Driver);
+
         /// <summary>
         /// Навести на кнопку "Проекты" сверху страницы и нажать на плюсик под этой кнопкой. 
         /// </summary>
@@ -44,6 +46,45 @@ namespace atFrameWork2.PageObjects
         }
 
         /// <summary>
+        /// Открыть задачу ИПР
+        /// </summary>
+        public TasksListPage OpenIPR(string profileName)
+        {
+            var taskIPRBtn = new WebItem(
+                $"//a[contains(@class, 'task-title') and contains(., '{profileName}')]",
+                "кнопка 'Открыть' задачу");
+            taskIPRBtn.Click();
+            return new TasksListPage();
+        }
+
+        /// <summary>
+        /// Закрыть задачу ИПР
+        /// </summary>
+        public TasksListPage CloseIPR()
+        {
+            var closeTaskIPRBtn = new WebItem(
+                "//div[@class='side-panel-label-icon side-panel-label-icon-close']",
+                "кнопка 'Закрыть' задачу");
+            closeTaskIPRBtn.Click();
+            return new TasksListPage();
+        }
+
+        /// <summary>
+        /// Начать выполнение задачи ИПР
+        /// </summary>
+        public TasksListPage BeginIPR()
+        {
+            var sliderFrame = new WebItem("//iframe[@class='side-panel-iframe']", "Фрейм слайдера");
+            sliderFrame.SwitchToFrame();
+            var beginIPRBtn = new WebItem(
+                "//span[@data-action='START']",
+                "кнопка 'Начать выполнение' задачи");
+            beginIPRBtn.Click();
+            WebDriverActions.SwitchToDefaultContent();
+            return new TasksListPage();
+        }
+
+        /// <summary>
         /// Проверяет, существует ли ИПР по заданному профилю в списке задач
         /// </summary>
         /// <param name="profileName">название профиля</param>
@@ -54,10 +95,7 @@ namespace atFrameWork2.PageObjects
                 $"//a[@class='task-title task-status-text-color-in-progress' and text()='ИПР по профилю: {profileName}']",
                 "Заголовок задачи в списке");
 
-            if (taskTitle.Count() == 0)
-                return false;
-
-            return true;
+            return taskTitle.Count() > 0;
         }
     }
 }
