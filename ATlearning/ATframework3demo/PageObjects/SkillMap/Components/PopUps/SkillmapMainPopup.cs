@@ -58,6 +58,16 @@ namespace ATframework3demo.PageObjects.SkillMap.Components.PopUps
             return new CertificationResultPage();
         }
 
+        public PlanCertificationPopup PlanCertification()
+        {
+            var SeeCertificationsBtn = new WebItem(
+            $"//div[@class='menu-popup-items']/span[@onclick='openCertificationPopup()']",
+            "Кнопка 'посмотреть статистику'");
+            SeeCertificationsBtn.Click();
+
+            return new PlanCertificationPopup();
+        }
+
         public CertificationListPage SeeCertifications()
         {
             var SeeCertificationsBtn = new WebItem(

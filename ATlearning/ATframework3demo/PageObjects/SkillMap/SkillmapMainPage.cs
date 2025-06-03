@@ -3,6 +3,7 @@ using atFrameWork2.SeleniumFramework;
 using ATframework3demo.PageObjects.SkillMap.Analytics;
 using ATframework3demo.PageObjects.SkillMap.Components;
 using ATframework3demo.PageObjects.SkillMap.Components.PopUps;
+using ATframework3demo.PageObjects.SkillMap.IPR;
 using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects.SkillMap
@@ -31,12 +32,28 @@ namespace ATframework3demo.PageObjects.SkillMap
             AddProfileBtn.Click();
             return new CreateSpecialistPage();
         }
-
+        
         /// <summary>
         /// Кликаем по бургеру напротив выбранного профиля
         /// </summary>
         /// <param name="profileName">Название профиля специалиста</param>
         /// <returns></returns>
-        public SkillmapMainPopup ClickOnBurger(string profileName) => new SkillmapMainPopup(profileName, Driver);     
+        public SkillmapMainPopup ClickOnBurger(string profileName) => new SkillmapMainPopup(profileName, Driver);
+
+        public bool IsProfileExists(string profileName)
+        {
+            var profile = new WebItem(
+                $"//span[@class='main-grid-cell-content' and contains(text(), '{profileName}')]",
+                $"Профиль с именем {profileName}");
+            try
+            {
+                profile.InnerText();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

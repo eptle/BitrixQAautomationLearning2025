@@ -1,5 +1,7 @@
-﻿using atFrameWork2.SeleniumFramework;
+﻿using atFrameWork2.BaseFramework;
+using atFrameWork2.SeleniumFramework;
 using ATframework3demo.PageObjects;
+using ATframework3demo.PageObjects.Company;
 using ATframework3demo.PageObjects.NewsFeed;
 using ATframework3demo.PageObjects.SkillMap;
 using OpenQA.Selenium;
@@ -29,9 +31,15 @@ namespace atFrameWork2.PageObjects
         /// <returns></returns>
         public SkillmapMainPage GoToSkillmap()
         {
-            string SkillmapUri = "http://bitrix.dev.bx/skillmap/";
+            string SkillmapUri = TestCase.RunningTestCase.TestPortal.PortalUri.ToString() + "skillmap/";
             WebDriverActions.OpenUri(new Uri(SkillmapUri));
             return new SkillmapMainPage();
+        }
+        public EmployeeListPage GoToEmployee()
+        {
+            string EmployeeListUri = "http://bitrix.dev.bx/company/";
+            WebDriverActions.OpenUri(new Uri(EmployeeListUri));
+            return new EmployeeListPage();
         }
     }
 }
